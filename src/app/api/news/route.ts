@@ -87,8 +87,12 @@ function isWithinLastDays(dateStr: string, days: number): boolean {
   }
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    // Get days parameter from query string
+    const { searchParams } = new URL(request.url);
+    const days = parseInt(searchParams.get('days') || '14', 10);
+
     // Fetch all feeds in parallel
     const fetchPromises = RSS_FEEDS.map((feed) =>
       fetch(feed.url, {
@@ -117,15 +121,15 @@ export async function GET() {
       // Silently skip failed feeds
     }
 
-    // Filter to last 60 days and sort by date descending
+    // Filter to last N days and sort by date descending
     const filteredItems = allItems
-      .filter((item) => isWithinLastDays(item.date, 60))
+      .filter((item) => isWithinLastDays(item.date, days))
       .sort((a, b) => {
         const dateA = new Date(a.date).getTime();
         const dateB = new Date(b.date).getTime();
         return dateB - dateA; // Descending order (newest first)
       })
-      .slice(0, 30); // Limit to 30 items
+      .slice(0, 100); // Limit to 100 items
 
     // Return response with CORS headers
     return NextResponse.json(

@@ -8,7 +8,7 @@ function NewsTicker() {
   const [items, setItems] = useState<{ title: string; link: string; source: string; date: string }[]>([]);
 
   useEffect(() => {
-    fetch('/api/news')
+    fetch('/api/news?days=14')
       .then(r => r.json())
       .then(data => setItems(data.items || []))
       .catch(() => {});
@@ -44,23 +44,23 @@ function AstonFMLogo({ size = 40 }: { size?: number }) {
           <stop offset="100%" stopColor="#3b7dd8" />
         </linearGradient>
       </defs>
-      <rect x="20" y="40" width="30" height="60" rx="3" fill="url(#brandGrad)" />
-      <rect x="55" y="20" width="25" height="80" rx="3" fill="url(#brandGrad)" opacity="0.85" />
-      <rect x="85" y="50" width="20" height="50" rx="3" fill="url(#brandGrad)" opacity="0.7" />
-      <rect x="27" y="48" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="37" y="48" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="27" y="60" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="37" y="60" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="27" y="72" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="37" y="72" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="62" y="28" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="62" y="40" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="62" y="52" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="62" y="64" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="62" y="76" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="90" y="58" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="90" y="70" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-      <rect x="90" y="82" width="7" height="6" rx="1" fill="white" opacity="0.9" />
+      <rect x="20" y="40" width="30" height="60" rx="3" fill="white" />
+      <rect x="55" y="20" width="25" height="80" rx="3" fill="white" opacity="0.85" />
+      <rect x="85" y="50" width="20" height="50" rx="3" fill="white" opacity="0.7" />
+      <rect x="27" y="48" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="37" y="48" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="27" y="60" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="37" y="60" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="27" y="72" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="37" y="72" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="62" y="28" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="62" y="40" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="62" y="52" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="62" y="64" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="62" y="76" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="90" y="58" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="90" y="70" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
+      <rect x="90" y="82" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
       <circle cx="95" cy="30" r="14" stroke="url(#brandGrad)" strokeWidth="4" fill="none" opacity="0.5" />
       <circle cx="95" cy="30" r="5" fill="url(#brandGrad)" opacity="0.5" />
     </svg>
@@ -105,6 +105,7 @@ export default function Home() {
           <a href="#case-studies" className="nav-link">Case Studies</a>
           <a href="#about" className="nav-link">About Us</a>
           <a href="#contact" className="nav-link">Contact</a>
+          <Link href="/news" className="nav-link">News</Link>
         </div>
         <div className="nav-right">
           <a href="https://www.linkedin.com/company/aston-group-uae" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
@@ -415,31 +416,33 @@ export default function Home() {
           <div className="section-header">
             <h2 className="section-title" style={{ color: 'white' }}>What Our Clients Say</h2>
           </div>
-          <div className="testimonials-grid">
-            <div className="testimonial-card">
-              <div className="testimonial-quote">&ldquo;Aston FM gave us the strategic FM oversight we needed without the cost of building an in-house team. Their dashboards and ESG reporting transformed how our board sees facilities management.&rdquo;</div>
-              <div className="testimonial-author">Operations Director</div>
-              <div className="testimonial-role">Multi-site Corporate Portfolio, Dubai</div>
-            </div>
-            <div className="testimonial-card">
-              <div className="testimonial-quote">&ldquo;The mobilisation of our 13 European sites was seamless. Aston FM managed the complexity across seven countries with precision, and we were operational on day one at every location.&rdquo;</div>
-              <div className="testimonial-author">Head of Facilities</div>
-              <div className="testimonial-role">Global Pharmaceutical Company</div>
-            </div>
-            <div className="testimonial-card">
-              <div className="testimonial-quote">&ldquo;Their bid writing support was the difference between winning and losing. The technical and commercial responses were outstanding, and we secured a contract worth over &pound;200m.&rdquo;</div>
-              <div className="testimonial-author">Bid Director</div>
-              <div className="testimonial-role">International FM Provider</div>
-            </div>
-            <div className="testimonial-card">
-              <div className="testimonial-quote">&ldquo;We achieved 20% energy savings within the first six months. Aston FM identified opportunities our internal team had missed for years. We&apos;re now rolling this out across all our UAE sites.&rdquo;</div>
-              <div className="testimonial-author">General Manager</div>
-              <div className="testimonial-role">Regional Caf&eacute; &amp; Bakery Chain, UAE</div>
-            </div>
-            <div className="testimonial-card">
-              <div className="testimonial-quote">&ldquo;The back-office transformation freed up 40% of our management time. Aston FM understood our operational pressures and designed workflows that actually work in a live FM environment.&rdquo;</div>
-              <div className="testimonial-author">Regional FM Director</div>
-              <div className="testimonial-role">Large FM Company, Abu Dhabi</div>
+          <div className="testimonials-carousel">
+            <div className="testimonials-carousel-track">
+              <div className="testimonial-card">
+                <div className="testimonial-quote">&ldquo;Aston FM gave us the strategic FM oversight we needed without the cost of building an in-house team. Their dashboards and ESG reporting transformed how our board sees facilities management.&rdquo;</div>
+                <div className="testimonial-author">Operations Director</div>
+                <div className="testimonial-role">Multi-site Corporate Portfolio, Dubai</div>
+              </div>
+              <div className="testimonial-card">
+                <div className="testimonial-quote">&ldquo;The mobilisation of our 13 European sites was seamless. Aston FM managed the complexity across seven countries with precision, and we were operational on day one at every location.&rdquo;</div>
+                <div className="testimonial-author">Head of Facilities</div>
+                <div className="testimonial-role">Global Pharmaceutical Company</div>
+              </div>
+              <div className="testimonial-card">
+                <div className="testimonial-quote">&ldquo;Their bid writing support was the difference between winning and losing. The technical and commercial responses were outstanding, and we secured a contract worth over &pound;200m.&rdquo;</div>
+                <div className="testimonial-author">Bid Director</div>
+                <div className="testimonial-role">International FM Provider</div>
+              </div>
+              <div className="testimonial-card">
+                <div className="testimonial-quote">&ldquo;We achieved 20% energy savings within the first six months. Aston FM identified opportunities our internal team had missed for years. We&apos;re now rolling this out across all our UAE sites.&rdquo;</div>
+                <div className="testimonial-author">General Manager</div>
+                <div className="testimonial-role">Regional Caf&eacute; &amp; Bakery Chain, UAE</div>
+              </div>
+              <div className="testimonial-card">
+                <div className="testimonial-quote">&ldquo;The back-office transformation freed up 40% of our management time. Aston FM understood our operational pressures and designed workflows that actually work in a live FM environment.&rdquo;</div>
+                <div className="testimonial-author">Regional FM Director</div>
+                <div className="testimonial-role">Large FM Company, Abu Dhabi</div>
+              </div>
             </div>
           </div>
         </div>
@@ -487,6 +490,7 @@ export default function Home() {
                 <li><a href="#sectors">Industries</a></li>
                 <li><a href="#insights">Insights</a></li>
                 <li><a href="#case-studies">Case Studies</a></li>
+                <li><Link href="/news">News</Link></li>
                 <li><Link href="/contact">Contact</Link></li>
               </ul>
             </div>
