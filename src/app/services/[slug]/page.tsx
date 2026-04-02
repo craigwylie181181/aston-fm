@@ -301,43 +301,49 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     <div>
       {/* Navigation */}
       <nav className="nav">
-        <Link href="/" className="nav-logo" style={{ textDecoration: 'none' }}>
-          <svg width={38} height={38} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00b67a" />
-                <stop offset="50%" stopColor="#00a5b5" />
-                <stop offset="100%" stopColor="#3b7dd8" />
-              </linearGradient>
-            </defs>
-            <rect x="20" y="40" width="30" height="60" rx="3" fill="url(#brandGrad)" />
-            <rect x="55" y="20" width="25" height="80" rx="3" fill="url(#brandGrad)" opacity="0.85" />
-            <rect x="85" y="50" width="20" height="50" rx="3" fill="url(#brandGrad)" opacity="0.7" />
-            <rect x="27" y="48" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-            <rect x="37" y="48" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-            <rect x="27" y="60" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-            <rect x="37" y="60" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-            <rect x="62" y="28" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-            <rect x="62" y="40" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-            <rect x="62" y="52" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-            <rect x="90" y="58" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-            <rect x="90" y="70" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-            <circle cx="95" cy="30" r="14" stroke="url(#brandGrad)" strokeWidth="4" fill="none" opacity="0.5" />
-            <circle cx="95" cy="30" r="5" fill="url(#brandGrad)" opacity="0.5" />
-          </svg>
-          <div className="nav-brand">
-            Aston <span className="nav-brand-accent">FM</span>
-          </div>
-        </Link>
+        <div className="nav-left">
+          <Link href="/" className="nav-logo" style={{ textDecoration: 'none' }}>
+            <svg width={32} height={32} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#00b67a" />
+                  <stop offset="50%" stopColor="#00a5b5" />
+                  <stop offset="100%" stopColor="#3b7dd8" />
+                </linearGradient>
+              </defs>
+              <rect x="20" y="40" width="30" height="60" rx="3" fill="url(#brandGrad)" />
+              <rect x="55" y="20" width="25" height="80" rx="3" fill="url(#brandGrad)" opacity="0.85" />
+              <rect x="85" y="50" width="20" height="50" rx="3" fill="url(#brandGrad)" opacity="0.7" />
+              <rect x="27" y="48" width="7" height="6" rx="1" fill="white" opacity="0.9" />
+              <rect x="37" y="48" width="7" height="6" rx="1" fill="white" opacity="0.9" />
+              <rect x="27" y="60" width="7" height="6" rx="1" fill="white" opacity="0.9" />
+              <rect x="37" y="60" width="7" height="6" rx="1" fill="white" opacity="0.9" />
+              <rect x="62" y="28" width="7" height="6" rx="1" fill="white" opacity="0.9" />
+              <rect x="62" y="40" width="7" height="6" rx="1" fill="white" opacity="0.9" />
+              <rect x="62" y="52" width="7" height="6" rx="1" fill="white" opacity="0.9" />
+              <rect x="90" y="58" width="7" height="6" rx="1" fill="white" opacity="0.9" />
+              <rect x="90" y="70" width="7" height="6" rx="1" fill="white" opacity="0.9" />
+              <circle cx="95" cy="30" r="14" stroke="url(#brandGrad)" strokeWidth="4" fill="none" opacity="0.5" />
+              <circle cx="95" cy="30" r="5" fill="url(#brandGrad)" opacity="0.5" />
+            </svg>
+          </Link>
+          <Link href="/" className="nav-company-name" style={{ textDecoration: 'none' }}>
+            ASTON FM
+          </Link>
+        </div>
         <div className="nav-middle">
           <Link href="/#services" className="nav-link">Services</Link>
           <Link href="/#sectors" className="nav-link">Sectors</Link>
           <Link href="/#insights" className="nav-link">Insights</Link>
-          <Link href="/#about" className="nav-link">About Us</Link>
-          <Link href="/#contact" className="nav-link">Contact</Link>
+          <Link href="/#case-studies" className="nav-link">Case Studies</Link>
         </div>
         <div className="nav-right">
-          <Link href="/#contact" className="btn-cta" style={{ textDecoration: 'none' }}>Get in Touch</Link>
+          <a href="https://linkedin.com/company/aston-group-uae" target="_blank" rel="noopener noreferrer" className="nav-social-link">
+            <svg width={20} height={20} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="currentColor" />
+            </svg>
+          </a>
+          <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
         </div>
       </nav>
 
@@ -420,9 +426,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       <footer className="footer">
         <div className="footer-container">
           <div className="footer-grid">
-            <div className="footer-column footer-brand">
-              <h4>Aston FM</h4>
-              <p>Lean FM consulting powered by AI. Strategic oversight, ESG reporting, and performance management for organisations that want results without the overhead.</p>
+            <div className="footer-column">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="/">About</a></li>
+                <li><Link href="/#services">Services</Link></li>
+                <li><Link href="/#sectors">Sectors</Link></li>
+                <li><Link href="/#case-studies">Case Studies</Link></li>
+              </ul>
             </div>
             <div className="footer-column">
               <h4>Services</h4>
@@ -432,36 +443,34 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 <li><Link href="/services/project-management">Project Management</Link></li>
                 <li><Link href="/services/cost-reduction">Cost-Reduction Review</Link></li>
                 <li><Link href="/services/tender-bid-support">Tender &amp; Bid Support</Link></li>
-                <li><Link href="/services/energy-savings">Energy-Savings Advisory</Link></li>
-                <li><Link href="/services/fm-outsourcing">FM Outsourcing Advisory</Link></li>
-                <li><Link href="/services/contract-mobilisation">Contract Mobilisation</Link></li>
-                <li><Link href="/services/back-office-automation">Back-Office Automation</Link></li>
               </ul>
             </div>
             <div className="footer-column">
-              <h4>Company</h4>
-              <ul>
-                <li><Link href="/#about">About Us</Link></li>
-                <li><Link href="/#insights">Insights</Link></li>
-                <li><Link href="/#contact">Contact</Link></li>
+              <h4>Connect</h4>
+              <ul className="footer-connect">
+                <li><a href="mailto:info@astongroupuae.com">info@astongroupuae.com</a></li>
+                <li>
+                  <a href="https://linkedin.com/company/aston-group-uae" target="_blank" rel="noopener noreferrer" className="footer-social-link">
+                    <svg width={16} height={16} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="currentColor" />
+                    </svg>
+                    LinkedIn
+                  </a>
+                </li>
+                <li>Dubai, UAE</li>
               </ul>
             </div>
             <div className="footer-column">
               <h4>Legal</h4>
               <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Cookie Policy</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Cookies</a></li>
               </ul>
             </div>
           </div>
           <div className="footer-bottom">
-            <div>&copy; 2026 Aston Facilities Management. All rights reserved.</div>
-            <div className="footer-bottom-links">
-              <a href="#">Privacy</a>
-              <a href="#">Terms</a>
-              <a href="#">Cookies</a>
-            </div>
+            <div>&copy; 2026 Aston Facilities Management</div>
           </div>
         </div>
       </footer>
