@@ -13,9 +13,9 @@ const services: Record<string, {
 }> = {
   'esg-reporting': {
     title: 'ESG Reporting for FM Portfolios',
-    tagline: 'Turn your facilities data into credible sustainability reporting \u2014 without hiring a full ESG team.',
+    tagline: 'Turn your facilities data into credible sustainability reporting — without hiring a full ESG team.',
     image: 'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1200&h=600&fit=crop',
-    overview: 'Environmental, Social, and Governance reporting is no longer optional for organisations managing property portfolios. Investors, regulators, and tenants expect transparent data on energy consumption, carbon emissions, and sustainability progress. But building an in-house ESG capability is expensive and slow. Aston FM delivers board-ready ESG reporting for your FM portfolio using AI-powered data collection, standardised Scope 1 and 2 templates, and monthly dashboards that track your progress against targets \u2014 all without the overhead of a dedicated team.',
+    overview: 'Environmental, Social, and Governance reporting is no longer optional for organisations managing property portfolios. Investors, regulators, and tenants expect transparent data on energy consumption, carbon emissions, and sustainability progress. But building an in-house ESG capability is expensive and slow. Aston FM delivers board-ready ESG reporting for your FM portfolio using AI-powered data collection, standardised Scope 1 and 2 templates, and monthly dashboards that track your progress against targets — all without the overhead of a dedicated team.',
     whatWeCover: [
       'Scope 1 and Scope 2 carbon emissions baselining across your portfolio',
       'Monthly sustainability dashboards with automated data feeds',
@@ -26,16 +26,16 @@ const services: Record<string, {
       'Tenant engagement metrics and social value reporting',
     ],
     howWeWork: [
-      { step: 'Discovery & Baseline', detail: 'We audit your current data sources \u2014 utility bills, BMS feeds, meter readings \u2014 and establish a reliable emissions baseline for your portfolio.' },
+      { step: 'Discovery & Baseline', detail: 'We audit your current data sources — utility bills, BMS feeds, meter readings — and establish a reliable emissions baseline for your portfolio.' },
       { step: 'Template Setup', detail: 'We configure Scope 1/2 reporting templates aligned to your chosen framework (SECR, ESOS, GRI, or custom) and connect your data sources.' },
       { step: 'AI-Powered Reporting', detail: 'Our AI drafts your monthly narrative reports and populates dashboards automatically. A specialist validates the data before delivery.' },
-      { step: 'Ongoing Monitoring', detail: 'Monthly dashboard updates, quarterly deep-dives, and annual report preparation \u2014 keeping your ESG commitments visible and on track.' },
+      { step: 'Ongoing Monitoring', detail: 'Monthly dashboard updates, quarterly deep-dives, and annual report preparation — keeping your ESG commitments visible and on track.' },
     ],
     whyUs: [
-      'We combine FM operational knowledge with ESG expertise \u2014 we understand buildings, not just carbon accounting',
+      'We combine FM operational knowledge with ESG expertise — we understand buildings, not just carbon accounting',
       'AI-drafted reports save 60-70% of the time vs manual preparation, without sacrificing accuracy',
       'Flexible scope: from single-site to multi-hundred-site portfolios',
-      'No long-term lock-in \u2014 monthly retainer with transparent deliverables',
+      'No long-term lock-in — monthly retainer with transparent deliverables',
       'We validate every dataset before it reaches your board, so you can report with confidence',
     ],
     pricing: 'Monthly retainer + one-off setup fee. Setup covers baselining and template configuration. Retainer covers ongoing data collection, dashboards, and narrative reports. Pricing scales with portfolio size.',
@@ -45,7 +45,7 @@ const services: Record<string, {
     title: 'FM Performance Dashboard',
     tagline: 'See everything that matters across your FM operation in one live view.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop',
-    overview: 'Most FM teams are data-rich but insight-poor. SLA reports arrive late, reactive maintenance data sits in spreadsheets, and nobody has a single view of what is actually happening across the portfolio. Aston FM builds and maintains a live performance dashboard that pulls together your key FM metrics \u2014 SLAs, planned preventative maintenance, reactive works, complaints, energy usage, costs, and open actions \u2014 so you can see what matters and act on it.',
+    overview: 'Most FM teams are data-rich but insight-poor. SLA reports arrive late, reactive maintenance data sits in spreadsheets, and nobody has a single view of what is actually happening across the portfolio. Aston FM builds and maintains a live performance dashboard that pulls together your key FM metrics — SLAs, planned preventative maintenance, reactive works, complaints, energy usage, costs, and open actions — so you can see what matters and act on it.',
     whatWeCover: [
       'SLA compliance tracking with traffic-light RAG status across all contracts',
       'Planned Preventative Maintenance (PPM) completion rates and overdue tracking',
@@ -56,26 +56,26 @@ const services: Record<string, {
       'Open action tracker with accountability and deadline visibility',
     ],
     howWeWork: [
-      { step: 'Data Audit', detail: 'We map your existing data sources \u2014 CAFM systems, contractor reports, spreadsheets, utility feeds \u2014 and identify gaps.' },
+      { step: 'Data Audit', detail: 'We map your existing data sources — CAFM systems, contractor reports, spreadsheets, utility feeds — and identify gaps.' },
       { step: 'Dashboard Build', detail: 'We design and build a live dashboard tailored to your KPIs, using tools your team can access without specialist training.' },
       { step: 'AI Summary Layer', detail: 'Our AI generates a written executive summary each month, highlighting trends, risks, and recommended actions from the data.' },
       { step: 'Ongoing Updates', detail: 'A part-time analyst updates inputs weekly/monthly, and we refine the dashboard as your FM operation evolves.' },
     ],
     whyUs: [
-      'We build dashboards that FM managers actually use \u2014 clear, actionable, and jargon-free',
+      'We build dashboards that FM managers actually use — clear, actionable, and jargon-free',
       'AI-generated summaries mean your leadership team gets narrative insight, not just charts',
-      'No expensive BI platform required \u2014 we work with tools you already have',
+      'No expensive BI platform required — we work with tools you already have',
       'We understand FM data because we come from FM, not from a data consultancy',
-      'Dashboard evolves with your operation \u2014 we add metrics and views as priorities change',
+      'Dashboard evolves with your operation — we add metrics and views as priorities change',
     ],
     pricing: 'Monthly retainer covering dashboard maintenance, data updates, and AI-generated summaries. One-off setup fee for initial data audit and dashboard build.',
     cta: 'Request a sample dashboard walkthrough',
   },
   'project-management': {
     title: 'Project Management Oversight',
-    tagline: 'Keep your FM projects on track, on budget, and properly documented \u2014 without hiring a full-time PM.',
+    tagline: 'Keep your FM projects on track, on budget, and properly documented — without hiring a full-time PM.',
     image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=600&fit=crop',
-    overview: 'Whether it is a fit-out, refurbishment, planned maintenance programme, or office relocation, FM projects need structured oversight to stay on track. But hiring a dedicated project manager for every initiative is not always practical or cost-effective. Aston FM provides fractional project management oversight \u2014 programme tracking, risk management, contractor coordination, and status reporting \u2014 so your projects are professionally managed without the full-time cost.',
+    overview: 'Whether it is a fit-out, refurbishment, planned maintenance programme, or office relocation, FM projects need structured oversight to stay on track. But hiring a dedicated project manager for every initiative is not always practical or cost-effective. Aston FM provides fractional project management oversight — programme tracking, risk management, contractor coordination, and status reporting — so your projects are professionally managed without the full-time cost.',
     whatWeCover: [
       'Programme and project planning with milestones and dependencies',
       'Risk and issue logs with mitigation tracking',
@@ -93,7 +93,7 @@ const services: Record<string, {
     ],
     whyUs: [
       'Senior FM project management experience across fit-outs, refurbishments, and capital programmes',
-      'AI prepares meeting minutes, trackers, and status updates \u2014 so more time is spent managing, not writing',
+      'AI prepares meeting minutes, trackers, and status updates — so more time is spent managing, not writing',
       'Flexible engagement: oversight for a single project or across a rolling programme',
       'We act as an extension of your team, not a separate consultancy silo',
       'Proven track record of delivering FM projects on time and within budget',
@@ -105,27 +105,27 @@ const services: Record<string, {
     title: 'FM Cost-Reduction Review',
     tagline: 'Find the savings hiding in your FM contracts, procurement, and operations.',
     image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=600&fit=crop',
-    overview: 'Most organisations are overspending on facilities management without realising it. Contracts roll over without review, procurement lacks benchmarking, and operational inefficiencies accumulate over time. Aston FM conducts a structured cost-reduction review of your FM spend \u2014 benchmarking against industry standards, identifying savings opportunities, and delivering a prioritised roadmap that typically uncovers 20-30% in achievable savings.',
+    overview: 'Most organisations are overspending on facilities management without realising it. Contracts roll over without review, procurement lacks benchmarking, and operational inefficiencies accumulate over time. Aston FM conducts a structured cost-reduction review of your FM spend — benchmarking against industry standards, identifying savings opportunities, and delivering a prioritised roadmap that typically uncovers 20-30% in achievable savings.',
     whatWeCover: [
       'Line-by-line analysis of your current FM spend across all categories',
       'Benchmarking against industry norms and comparable portfolios',
       'Contract review to identify over-specification, duplication, and renegotiation opportunities',
       'Procurement analysis to find better value from suppliers and frameworks',
-      'Operational efficiency assessment \u2014 where processes create unnecessary cost',
+      'Operational efficiency assessment — where processes create unnecessary cost',
       'Prioritised savings roadmap with quick wins and longer-term opportunities',
       'Business case preparation for implementing recommended changes',
     ],
     howWeWork: [
-      { step: 'Data Collection', detail: 'We gather your FM cost data \u2014 invoices, contracts, budgets, purchase orders \u2014 and organise it into a clear spend profile.' },
+      { step: 'Data Collection', detail: 'We gather your FM cost data — invoices, contracts, budgets, purchase orders — and organise it into a clear spend profile.' },
       { step: 'Benchmarking & Analysis', detail: 'AI-assisted analysis compares your spend against industry benchmarks and identifies outliers, duplications, and over-provisions.' },
       { step: 'Savings Roadmap', detail: 'We deliver a prioritised report showing exactly where savings are available, how much, and what actions are needed to capture them.' },
       { step: 'Implementation Support', detail: 'If needed, we can support procurement exercises, contract renegotiations, or operational changes to realise the identified savings.' },
     ],
     whyUs: [
-      'We have benchmarked FM costs across hundreds of sites \u2014 we know what good looks like',
+      'We have benchmarked FM costs across hundreds of sites — we know what good looks like',
       'AI-powered analysis processes large datasets quickly, finding patterns manual reviews miss',
       'We focus on achievable savings, not theoretical numbers that never materialise',
-      'Fixed-fee engagement means you know the cost upfront \u2014 and it pays for itself from the savings',
+      'Fixed-fee engagement means you know the cost upfront — and it pays for itself from the savings',
       'Independent advice with no ties to FM suppliers or contractors',
     ],
     pricing: 'Fixed-fee diagnostic engagement. Scope and fee agreed upfront based on portfolio size and complexity. Optional success-fee model available for implementation support.',
@@ -135,7 +135,7 @@ const services: Record<string, {
     title: 'Tender & Bid Support',
     tagline: 'Win more FM contracts with professionally written, compliant, and compelling bids.',
     image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1200&h=600&fit=crop',
-    overview: 'Winning FM contracts requires more than competitive pricing. Procurement evaluators score on quality, methodology, ESG commitments, social value, and compliance. A poorly structured bid loses marks regardless of how good the service offer is. Aston FM provides expert bid writing support \u2014 from compliance matrices and method statements to ESG responses and social value narratives \u2014 helping FM providers and in-house teams produce winning submissions.',
+    overview: 'Winning FM contracts requires more than competitive pricing. Procurement evaluators score on quality, methodology, ESG commitments, social value, and compliance. A poorly structured bid loses marks regardless of how good the service offer is. Aston FM provides expert bid writing support — from compliance matrices and method statements to ESG responses and social value narratives — helping FM providers and in-house teams produce winning submissions.',
     whatWeCover: [
       'Full bid and proposal writing for FM tenders',
       'Compliance matrix preparation ensuring every requirement is addressed',
@@ -152,11 +152,11 @@ const services: Record<string, {
       { step: 'Final Review & Submit', detail: 'Senior review of the complete submission for quality, consistency, and persuasiveness before handover for submission.' },
     ],
     whyUs: [
-      'We have written and evaluated FM bids for years \u2014 we know what scores well and what does not',
+      'We have written and evaluated FM bids for years — we know what scores well and what does not',
       'AI drafting accelerates turnaround without sacrificing quality, so you can bid on more opportunities',
       'ESG and social value expertise means you score well on the sections most competitors struggle with',
       'Flexible engagement: per-bid pricing for occasional support, or retainer for regular bidding programmes',
-      'We write to win, not just to comply \u2014 every response is crafted to maximise evaluation scores',
+      'We write to win, not just to comply — every response is crafted to maximise evaluation scores',
     ],
     pricing: 'Per-bid fee based on tender size and complexity, or monthly retainer for organisations with a regular bidding pipeline. Quick-turnaround pricing available.',
     cta: 'Send us your next tender for a free assessment',
@@ -165,25 +165,25 @@ const services: Record<string, {
     title: 'Energy-Savings Advisory',
     tagline: 'Cut energy costs and carbon emissions with practical, payback-focused recommendations.',
     image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&h=600&fit=crop',
-    overview: 'Energy is one of the largest controllable costs in any FM budget, yet many organisations lack the time or expertise to systematically reduce it. Aston FM provides lightweight energy audits, utility bill reviews, and retrofit roadmaps that identify practical savings \u2014 from quick wins you can implement this month to longer-term investments with clear payback calculations. No jargon, no over-engineering \u2014 just actionable recommendations that save money and cut carbon.',
+    overview: 'Energy is one of the largest controllable costs in any FM budget, yet many organisations lack the time or expertise to systematically reduce it. Aston FM provides lightweight energy audits, utility bill reviews, and retrofit roadmaps that identify practical savings — from quick wins you can implement this month to longer-term investments with clear payback calculations. No jargon, no over-engineering — just actionable recommendations that save money and cut carbon.',
     whatWeCover: [
       'Utility bill analysis identifying billing errors, tariff optimisation, and consumption anomalies',
       'Lightweight energy audits focused on the highest-impact opportunities',
       'LED lighting, HVAC optimisation, and building fabric improvement assessments',
       'Retrofit roadmaps with payback periods and ROI calculations for each measure',
-      'Renewable energy feasibility \u2014 solar PV, heat pumps, battery storage',
+      'Renewable energy feasibility — solar PV, heat pumps, battery storage',
       'Behavioural change programmes to reduce energy waste',
       'Carbon reduction quantification aligned to your net-zero targets',
     ],
     howWeWork: [
       { step: 'Utility Review', detail: 'We analyse 12-24 months of energy bills to identify billing errors, tariff issues, and consumption patterns that signal waste.' },
-      { step: 'Site Assessment', detail: 'Targeted site surveys focus on the areas with the biggest savings potential \u2014 lighting, HVAC, controls, and building envelope.' },
+      { step: 'Site Assessment', detail: 'Targeted site surveys focus on the areas with the biggest savings potential — lighting, HVAC, controls, and building envelope.' },
       { step: 'Savings Roadmap', detail: 'AI structures the findings into a prioritised roadmap showing each measure, its cost, payback period, and carbon saving.' },
       { step: 'Implementation Support', detail: 'We can project-manage retrofit works through specialist subcontractors, or hand over the roadmap for your team to deliver.' },
     ],
     whyUs: [
       'FM-first approach: we understand how buildings actually operate, not just the theory',
-      'Practical recommendations with realistic payback periods \u2014 not aspirational wish lists',
+      'Practical recommendations with realistic payback periods — not aspirational wish lists',
       'AI-structured analysis means faster turnaround and lower advisory costs',
       'We quantify both the financial and carbon savings, supporting your business case and ESG reporting',
       'Success-fee option available: we only earn more when you save more',
@@ -195,31 +195,90 @@ const services: Record<string, {
     title: 'FM Outsourcing Advisory',
     tagline: 'Outsource your FM with clarity, control, and confidence.',
     image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&h=600&fit=crop',
-    overview: 'Outsourcing facilities management can deliver significant cost savings and service improvements \u2014 but only if the scope, SLAs, and vendor selection are done right. Too many organisations rush into FM outsourcing with vague specifications, ending up with poor service, hidden costs, and adversarial contract relationships. Aston FM guides you through the entire outsourcing journey \u2014 from scope definition and SLA design to vendor evaluation and transition planning \u2014 so you outsource with confidence and maintain control.',
+    overview: 'Outsourcing facilities management can deliver significant cost savings and service improvements — but only if the scope, SLAs, and vendor selection are done right. Too many organisations rush into FM outsourcing with vague specifications, ending up with poor service, hidden costs, and adversarial contract relationships. Aston FM guides you through the entire outsourcing journey — from scope definition and SLA design to vendor evaluation and transition planning — so you outsource with confidence and maintain control.',
     whatWeCover: [
       'Scope of services definition with clear boundaries and exclusions',
       'SLA and KPI framework design that drives the right behaviours',
       'Output-based specification writing for competitive tendering',
       'Vendor evaluation and scoring methodology',
-      'Commercial model design \u2014 fixed price, cost-plus, open-book, or hybrid',
+      'Commercial model design — fixed price, cost-plus, open-book, or hybrid',
       'Transition and mobilisation planning',
       'Ongoing contract governance and performance management setup',
     ],
     howWeWork: [
-      { step: 'Requirements Workshop', detail: 'We facilitate workshops with your stakeholders to define what good FM looks like for your organisation \u2014 services, standards, and priorities.' },
+      { step: 'Requirements Workshop', detail: 'We facilitate workshops with your stakeholders to define what good FM looks like for your organisation — services, standards, and priorities.' },
       { step: 'Specification & SLA Design', detail: 'AI-assisted templates help us rapidly build a comprehensive specification with measurable SLAs and KPIs that drive genuine performance.' },
       { step: 'Market Engagement', detail: 'We design the evaluation methodology, support vendor engagement, and provide independent scoring and analysis of responses.' },
-      { step: 'Transition Planning', detail: 'Detailed mobilisation plan covering TUPE, asset transfers, system migrations, and day-one readiness \u2014 so the handover runs smoothly.' },
+      { step: 'Transition Planning', detail: 'Detailed mobilisation plan covering TUPE, asset transfers, system migrations, and day-one readiness — so the handover runs smoothly.' },
     ],
     whyUs: [
-      'We have been on both sides of FM outsourcing \u2014 client-side and provider-side \u2014 so we know what works',
+      'We have been on both sides of FM outsourcing — client-side and provider-side — so we know what works',
       'AI-generated templates and comparison tables accelerate the process without cutting corners',
       'Independent advice: we have no commercial relationships with FM providers, so our recommendations are unbiased',
-      'We design contracts for partnership, not confrontation \u2014 because adversarial relationships always cost more',
+      'We design contracts for partnership, not confrontation — because adversarial relationships always cost more',
       'Post-transition support available to ensure the new arrangement delivers on its promises',
     ],
     pricing: 'Project fee based on outsourcing scope and complexity. Typically structured in phases (scoping, procurement, transition) so you can engage for all or part of the journey.',
     cta: 'Discuss your outsourcing plans',
+  },
+  'contract-mobilisation': {
+    title: 'Contract Mobilisation & Support',
+    tagline: 'Seamless FM contract transitions \u2014 planned, coordinated, and delivered without the chaos.',
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1200&h=600&fit=crop',
+    overview: 'Contract mobilisation is one of the highest-risk phases in facilities management. New contracts, re-tenders, and insourcing transitions all demand meticulous planning, tight coordination, and experienced programme management to avoid service disruption. Yet many organisations lack the dedicated resource to manage mobilisation properly alongside business-as-usual operations. Aston FM provides lean, AI-powered mobilisation support that covers the entire transition lifecycle \u2014 from programme planning and TUPE coordination through supply chain setup, technology deployment, and workforce onboarding \u2014 so your new contract starts strong and stabilises fast.',
+    whatWeCover: [
+      'Mobilisation programme planning with milestones, dependencies, and critical-path tracking',
+      'TUPE consultation coordination and workforce transition support',
+      'Supply chain mobilisation \u2014 subcontractor onboarding, agreements, and compliance verification',
+      'Technology and systems deployment \u2014 CAFM setup, access controls, and data migration',
+      'Site surveys, asset verification, and condition assessments',
+      'Workforce onboarding \u2014 inductions, DBS checks, right-to-work, PPE, and uniform coordination',
+      'Readiness reviews and go/no-go gateway assessments before go-live',
+      'Post-mobilisation stabilisation and 90-day performance monitoring',
+    ],
+    howWeWork: [
+      { step: 'Mobilisation Planning', detail: 'We build a detailed programme plan covering every workstream \u2014 people, supply chain, technology, compliance, and operations \u2014 with clear owners, deadlines, and dependencies.' },
+      { step: 'Coordination & Delivery', detail: 'We drive the mobilisation programme day-to-day, coordinating between your team, incoming staff, subcontractors, and technology providers to keep every workstream on track.' },
+      { step: 'Go-Live Readiness', detail: 'Structured readiness reviews and gateway assessments ensure nothing is missed before the contract goes live. AI-generated checklists and risk logs flag issues before they become problems.' },
+      { step: 'Stabilisation', detail: 'Post-mobilisation support for the critical first 90 days \u2014 monitoring performance, resolving snagging issues, and embedding processes so the contract transitions from mobilisation to steady state.' },
+    ],
+    whyUs: [
+      'Extensive experience mobilising FM contracts across corporate, healthcare, education, and public sector portfolios',
+      'AI-powered programme tracking and automated status reporting \u2014 less admin, more delivery',
+      'Lean consulting model means you get senior mobilisation expertise without hiring a full-time programme team',
+      'We act as an extension of your team, working alongside your operations and HR functions',
+      'Proven methodology that reduces mobilisation risk and accelerates time to steady-state performance',
+    ],
+    pricing: 'Project fee based on contract size and mobilisation complexity. Typically structured in phases (planning, delivery, stabilisation) so you can engage for all or part of the transition. Flexible support models available.',
+    cta: 'Plan your contract mobilisation',
+  },
+  'back-office-automation': {
+    title: 'Back-Office Automation',
+    tagline: 'Eliminate the admin burden from your FM operation \u2014 procurement, HR, finance, and reporting handled efficiently so your team can focus on delivery.',
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&h=600&fit=crop',
+    overview: 'Facilities management generates enormous volumes of back-office work: purchase orders, invoice processing, supplier onboarding, workforce mobilisation, compliance documentation, and operational reporting. For lean FM teams, this administrative overhead can consume 40-60% of management time \u2014 time that should be spent on strategic delivery and client relationships. Aston FM provides a managed back-office service that handles the operational administration behind your FM contracts. We combine experienced FM administrators with AI-powered workflow automation to process work faster, more accurately, and at a fraction of the cost of doing it all in-house.',
+    whatWeCover: [
+      'Back-office admin and operational reporting \u2014 monthly packs, KPI tracking, and management information',
+      'Procurement and vendor coordination \u2014 PO raising, supplier onboarding, quote management, and spend tracking',
+      'HR, mobilisation, and workforce support \u2014 DBS checks, right-to-work, inductions, uniform and PPE coordination',
+      'Finance and invoice-processing support \u2014 invoice matching, cost coding, accruals, and payment run preparation',
+      'Workflow and process transformation \u2014 digitising paper-based processes, building approval workflows, and eliminating bottlenecks',
+    ],
+    howWeWork: [
+      { step: 'Process Audit', detail: 'We map your current back-office workflows end-to-end \u2014 identifying bottlenecks, manual steps, duplicated effort, and compliance gaps that slow your operation down.' },
+      { step: 'Design & Automate', detail: 'We design streamlined workflows using a combination of trained administrators and automation tools. Approvals, notifications, and document generation are built into the process.' },
+      { step: 'Transition & Embed', detail: 'We take over the agreed back-office functions with a managed team. Your people are freed up to focus on operations, client relationships, and strategic delivery.' },
+      { step: 'Continuous Improvement', detail: 'Monthly reviews track processing times, error rates, and cost savings. We continuously refine workflows and introduce further automation as your operation matures.' },
+    ],
+    whyUs: [
+      'FM-experienced administrators who understand the operational context behind every purchase order and invoice',
+      'AI-assisted processing that reduces manual data entry by up to 70% and catches errors before they reach your finance team',
+      'Scalable capacity \u2014 ramp up during mobilisations and contract transitions without permanent hires',
+      'Full audit trail and compliance documentation for every transaction',
+      'Transparent monthly reporting on volumes processed, turnaround times, and cost per transaction',
+    ],
+    pricing: 'Monthly retainer based on transaction volumes and scope of services. Setup fee covers process mapping, workflow configuration, and team onboarding. Volume discounts available for multi-contract portfolios.',
+    cta: 'Streamline your FM back office',
   },
 };
 
@@ -375,6 +434,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 <li><Link href="/services/tender-bid-support">Tender &amp; Bid Support</Link></li>
                 <li><Link href="/services/energy-savings">Energy-Savings Advisory</Link></li>
                 <li><Link href="/services/fm-outsourcing">FM Outsourcing Advisory</Link></li>
+                <li><Link href="/services/contract-mobilisation">Contract Mobilisation</Link></li>
+                <li><Link href="/services/back-office-automation">Back-Office Automation</Link></li>
               </ul>
             </div>
             <div className="footer-column">
@@ -407,4 +468,3 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     </div>
   );
 }
-
