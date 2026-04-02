@@ -85,7 +85,7 @@ export default function NewsPage() {
       <nav className="nav">
         <button onClick={scrollToTop} className="nav-logo" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
           <AstonFMLogo size={38} />
-          <div className="nav-brand">
+          <div className="nav-brand" style={{ color: 'white' }}>
             Aston <span className="nav-brand-accent">FM</span>
           </div>
         </button>
@@ -99,7 +99,7 @@ export default function NewsPage() {
           <Link href="/news" className="nav-link">News</Link>
         </div>
         <div className="nav-right">
-          <a href="https://www.linkedin.com/company/aston-group-uae" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
+          <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
             <LinkedInIcon size={20} />
           </a>
           <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
@@ -153,7 +153,7 @@ export default function NewsPage() {
             <div className="footer-column footer-brand">
               <h4>Aston FM</h4>
               <p>Lean FM consulting powered by AI. Strategic oversight, ESG reporting, and performance management for organisations across the UAE and international markets.</p>
-              <a href="https://www.linkedin.com/company/aston-group-uae" target="_blank" rel="noopener noreferrer" className="footer-linkedin">
+              <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="footer-linkedin">
                 <LinkedInIcon size={24} /> Follow us on LinkedIn
               </a>
             </div>

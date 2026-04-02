@@ -1370,31 +1370,73 @@ button {
   pointer-events: none;
 }
 
-.testimonials-carousel {
+.testimonials-slider {
   position: relative;
-  overflow: hidden;
-  z-index: 1;
-  max-width: 800px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.testimonials-carousel-track {
+.testimonials-track {
   display: flex;
-  animation: testimonialScroll 25s ease-in-out infinite;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 0.5rem 0;
 }
 
-.testimonials-carousel .testimonial-card {
-  min-width: 100%;
+.testimonials-track::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonials-arrow {
   flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 2.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.1);
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.testimonials-arrow:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.testimonials-arrow-left {
+  margin-right: 1rem;
+}
+
+.testimonials-arrow-right {
+  margin-left: 1rem;
+}
+
+.testimonial-card {
+  flex: 0 0 calc(33.333% - 1rem);
+  min-width: 300px;
+  scroll-snap-align: start;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
   color: white;
   text-align: center;
 }
 
-.testimonials-carousel .testimonial-card .testimonial-quote {
+.testimonial-card .testimonial-quote {
   font-size: 1.1rem;
   font-style: italic;
   line-height: 1.8;
@@ -1402,25 +1444,16 @@ button {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.testimonials-carousel .testimonial-card .testimonial-author {
+.testimonial-card .testimonial-author {
   font-size: 1rem;
   font-weight: 600;
   color: var(--color-green);
 }
 
-.testimonials-carousel .testimonial-card .testimonial-role {
+.testimonial-card .testimonial-role {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.5);
   margin-top: 0.25rem;
-}
-
-@keyframes testimonialScroll {
-  0%, 16% { transform: translateX(0); }
-  20%, 36% { transform: translateX(-100%); }
-  40%, 56% { transform: translateX(-200%); }
-  60%, 76% { transform: translateX(-300%); }
-  80%, 96% { transform: translateX(-400%); }
-  100% { transform: translateX(0); }
 }
 
 /* ── Footer LinkedIn ────────────────────────────────────────── */

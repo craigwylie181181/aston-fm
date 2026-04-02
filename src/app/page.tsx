@@ -94,7 +94,7 @@ export default function Home() {
       <nav className={`nav ${isScrolled ? 'scrolled' : ''}`}>
         <button onClick={scrollToTop} className="nav-logo" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
           <AstonFMLogo size={38} />
-          <div className="nav-brand">
+          <div className="nav-brand" style={{ color: 'white' }}>
             Aston <span className="nav-brand-accent">FM</span>
           </div>
         </button>
@@ -108,7 +108,7 @@ export default function Home() {
           <Link href="/news" className="nav-link">News</Link>
         </div>
         <div className="nav-right">
-          <a href="https://www.linkedin.com/company/aston-group-uae" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
+          <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
             <LinkedInIcon size={20} />
           </a>
           <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
@@ -416,8 +416,12 @@ export default function Home() {
           <div className="section-header">
             <h2 className="section-title" style={{ color: 'white' }}>What Our Clients Say</h2>
           </div>
-          <div className="testimonials-carousel">
-            <div className="testimonials-carousel-track">
+          <div className="testimonials-slider" id="testimonials-slider">
+            <button className="testimonials-arrow testimonials-arrow-left" onClick={() => {
+              const slider = document.getElementById('testimonials-track');
+              if (slider) slider.scrollBy({ left: -400, behavior: 'smooth' });
+            }}>&lsaquo;</button>
+            <div className="testimonials-track" id="testimonials-track">
               <div className="testimonial-card">
                 <div className="testimonial-quote">&ldquo;Aston FM gave us the strategic FM oversight we needed without the cost of building an in-house team. Their dashboards and ESG reporting transformed how our board sees facilities management.&rdquo;</div>
                 <div className="testimonial-author">Operations Director</div>
@@ -444,6 +448,10 @@ export default function Home() {
                 <div className="testimonial-role">Large FM Company, Abu Dhabi</div>
               </div>
             </div>
+            <button className="testimonials-arrow testimonials-arrow-right" onClick={() => {
+              const slider = document.getElementById('testimonials-track');
+              if (slider) slider.scrollBy({ left: 400, behavior: 'smooth' });
+            }}>&rsaquo;</button>
           </div>
         </div>
       </section>
@@ -465,7 +473,7 @@ export default function Home() {
             <div className="footer-column footer-brand">
               <h4>Aston FM</h4>
               <p>Lean FM consulting powered by AI. Strategic oversight, ESG reporting, and performance management for organisations across the UAE and international markets.</p>
-              <a href="https://www.linkedin.com/company/aston-group-uae" target="_blank" rel="noopener noreferrer" className="footer-linkedin">
+              <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="footer-linkedin">
                 <LinkedInIcon size={24} /> Follow us on LinkedIn
               </a>
             </div>

@@ -17,11 +17,13 @@ interface FeedConfig {
 
 // Use feeds that reliably serve RSS to server-side requests
 const RSS_FEEDS: FeedConfig[] = [
-  { url: 'https://feeds.bbci.co.uk/news/business/rss.xml', source: 'BBC Business' },
-  { url: 'https://www.theguardian.com/business/rss', source: 'The Guardian' },
-  { url: 'https://rss.nytimes.com/services/xml/rss/nyt/RealEstate.xml', source: 'NY Times' },
-  { url: 'https://www.facilitiesnet.com/rss/fnallheadlines.xml', source: 'Facilities Net' },
   { url: 'https://www.fm-world.co.uk/feed/', source: 'FM World' },
+  { url: 'https://www.facilitiesnet.com/rss/fnallheadlines.xml', source: 'Facilities Net' },
+  { url: 'https://feeds.bbci.co.uk/news/business/rss.xml', source: 'BBC Business' },
+  { url: 'https://www.greenbiz.com/rss/all', source: 'GreenBiz' },
+  { url: 'https://www.edie.net/rss/', source: 'edie' },
+  { url: 'https://www.theguardian.com/environment/energy/rss', source: 'Guardian Energy' },
+  { url: 'https://www.energymanagertoday.com/feed', source: 'Energy Manager Today' },
 ];
 
 function stripCDATA(text: string): string {
