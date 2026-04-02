@@ -15,17 +15,14 @@ interface FeedConfig {
   source: string;
 }
 
+// Use feeds that reliably serve RSS to server-side requests
 const RSS_FEEDS: FeedConfig[] = [
-  { url: 'https://www.fm-world.co.uk/feed/', source: 'FM World' },
+  { url: 'https://feeds.bbci.co.uk/news/business/rss.xml', source: 'BBC Business' },
+  { url: 'https://www.theguardian.com/business/rss', source: 'The Guardian' },
+  { url: 'https://rss.nytimes.com/services/xml/rss/nyt/RealEstate.xml', source: 'NY Times' },
   { url: 'https://www.facilitiesnet.com/rss/fnallheadlines.xml', source: 'Facilities Net' },
-  { url: 'https://gulfnews.com/rss/business', source: 'Gulf News' },
-  { url: 'https://www.constructionweekonline.com/rss', source: 'Construction Week' },
-  { url: 'https://www.arabianbusiness.com/rss', source: 'Arabian Business' },
+  { url: 'https://www.fm-world.co.uk/feed/', source: 'FM World' },
 ];
-
-function parseRSSDate(dateStr: string): Date {
-  return new Date(dateStr);
-}
 
 function stripCDATA(text: string): string {
   return text
@@ -34,45 +31,96 @@ function stripCDATA(text: string): string {
     .trim();
 }
 
-function extractRSSItems(xmlContent: string, source: string): NewsItem[] {
+function extractItems(xmlContent: string, source: string): NewsItem[] {
   const items: NewsItem[] = [];
 
-  // Extract all <item> blocks
-  const itemRegex = /<item>([\s\S]*?)<\/item>/g;
+  // Try RSS <item> blocks first
+  const itemRegex = /<item[\s>]([\s\S]*?)<\/item>/g;
   let itemMatch;
 
   while ((itemMatch = itemRegex.exec(xmlContent)) !== null) {
-    const itemContent = itemMatch[1];
+    const content = itemMatch[1];
+    const item = parseItemContent(content, source);
+    if (item) items.push(item);
+  }
 
-    // Extract title
-    const titleMatch = /<title[^>]*>([\s\S]*?)<\/title>/.exec(itemContent);
-    const title = titleMatch ? stripCDATA(titleMatch[1]) : '';
+  // If no RSS items found, try Atom <entry> blocks
+  if (items.length === 0) {
+    const entryRegex = /<entry[\s>]([\s\S]*?)<\/entry>/g;
+    let entryMatch;
 
-    // Extract link — handle both <link>url</link> and self-closing <link href="url"/>
-    let link = '';
-    const linkMatch = /<link[^>]*>([\s\S]*?)<\/link>/.exec(itemContent);
-    if (linkMatch && linkMatch[1].trim()) {
-      link = stripCDATA(linkMatch[1]);
-    } else {
-      const linkAttrMatch = /<link[^>]+href=["']([^"']+)["']/.exec(itemContent);
-      if (linkAttrMatch) link = linkAttrMatch[1];
-    }
-
-    // Extract pubDate
-    const pubDateMatch = /<pubDate[^>]*>([\s\S]*?)<\/pubDate>/.exec(itemContent);
-    const pubDate = pubDateMatch ? stripCDATA(pubDateMatch[1]) : '';
-
-    if (title && link) {
-      items.push({
-        title: decodeHTMLEntities(title),
-        link,
-        source,
-        date: pubDate || new Date().toUTCString(),
-      });
+    while ((entryMatch = entryRegex.exec(xmlContent)) !== null) {
+      const content = entryMatch[1];
+      const item = parseEntryContent(content, source);
+      if (item) items.push(item);
     }
   }
 
   return items;
+}
+
+function parseItemContent(content: string, source: string): NewsItem | null {
+  // Extract title
+  const titleMatch = /<title[^>]*>([\s\S]*?)<\/title>/.exec(content);
+  const title = titleMatch ? stripCDATA(titleMatch[1]) : '';
+
+  // Extract link - handle various formats
+  let link = '';
+  const linkContentMatch = /<link[^>]*>([\s\S]*?)<\/link>/.exec(content);
+  if (linkContentMatch && linkContentMatch[1].trim()) {
+    link = stripCDATA(linkContentMatch[1]);
+  }
+  if (!link) {
+    const linkAttrMatch = /<link[^>]+href=["']([^"']+)["']/.exec(content);
+    if (linkAttrMatch) link = linkAttrMatch[1];
+  }
+  // Some feeds use <guid> as a link
+  if (!link) {
+    const guidMatch = /<guid[^>]*>([\s\S]*?)<\/guid>/.exec(content);
+    if (guidMatch) {
+      const guid = stripCDATA(guidMatch[1]);
+      if (guid.startsWith('http')) link = guid;
+    }
+  }
+
+  // Extract pubDate
+  const pubDateMatch = /<pubDate[^>]*>([\s\S]*?)<\/pubDate>/.exec(content);
+  const pubDate = pubDateMatch ? stripCDATA(pubDateMatch[1]) : '';
+
+  if (title && link) {
+    return {
+      title: decodeHTMLEntities(title),
+      link,
+      source,
+      date: pubDate || new Date().toUTCString(),
+    };
+  }
+  return null;
+}
+
+function parseEntryContent(content: string, source: string): NewsItem | null {
+  // Atom feed format
+  const titleMatch = /<title[^>]*>([\s\S]*?)<\/title>/.exec(content);
+  const title = titleMatch ? stripCDATA(titleMatch[1]) : '';
+
+  // Atom uses <link href="..."/> (self-closing)
+  let link = '';
+  const linkAttrMatch = /<link[^>]+href=["']([^"']+)["']/.exec(content);
+  if (linkAttrMatch) link = linkAttrMatch[1];
+
+  // Atom uses <updated> or <published>
+  const dateMatch = /<(?:updated|published)[^>]*>([\s\S]*?)<\/(?:updated|published)>/.exec(content);
+  const date = dateMatch ? stripCDATA(dateMatch[1]) : '';
+
+  if (title && link) {
+    return {
+      title: decodeHTMLEntities(title),
+      link,
+      source,
+      date: date || new Date().toUTCString(),
+    };
+  }
+  return null;
 }
 
 function decodeHTMLEntities(text: string): string {
@@ -97,13 +145,13 @@ function decodeHTMLEntities(text: string): string {
 
 function isWithinLastDays(dateStr: string, days: number): boolean {
   try {
-    const itemDate = parseRSSDate(dateStr);
-    if (isNaN(itemDate.getTime())) return true; // Include items with unparseable dates
+    const itemDate = new Date(dateStr);
+    if (isNaN(itemDate.getTime())) return true;
     const now = new Date();
     const cutoffDate = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
     return itemDate >= cutoffDate;
   } catch {
-    return true; // Include on error
+    return true;
   }
 }
 
@@ -147,7 +195,7 @@ export async function GET(request: Request) {
     for (const result of results) {
       if (result.status === 'fulfilled') {
         const { feed, xml } = result.value;
-        const feedItems = extractRSSItems(xml, feed.source);
+        const feedItems = extractItems(xml, feed.source);
         allItems.push(...feedItems);
         feedsOk++;
       }
