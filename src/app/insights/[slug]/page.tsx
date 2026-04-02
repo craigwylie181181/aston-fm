@@ -301,8 +301,9 @@ export function generateStaticParams(): Array<{ slug: Slug }> {
   ];
 }
 
-export function generateMetadata({ params }: { params: { slug: Slug } }): Metadata {
-  const article = insightsData[params.slug];
+export async function generateMetadata({ params }: { params: Promise<{ slug: Slug }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const article = insightsData[slug];
   if (!article) {
     return {
       title: 'Article Not Found',
@@ -323,8 +324,9 @@ export function generateMetadata({ params }: { params: { slug: Slug } }): Metada
   };
 }
 
-export default function InsightPage({ params }: { params: { slug: Slug } }) {
-  const article = insightsData[params.slug];
+export default async function InsightPage({ params }: { params: Promise<{ slug: Slug }> }) {
+  const { slug } = await params;
+  const article = insightsData[slug];
 
   if (!article) {
     return (
@@ -474,10 +476,10 @@ export default function InsightPage({ params }: { params: { slug: Slug } }) {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-navy mb-8">More Insights</h2>
             <div className="grid grid-cols-2 gap-6">
-              {Object.entries(insightsData).filter(([slug]) => slug !== params.slug).slice(0, 4).map(([slug, data]) => (
+              {Object.entries(insightsData).filter(([s]) => s !== slug).slice(0, 4).map(([s, data]) => (
                 <Link
-                  key={slug}
-                  href={`/insights/${slug}`}
+                  key={s}
+                  href={`/insights/${s}`}
                   className="group bg-white p-6 rounded-lg border border-gray-200 hover:border-green hover:shadow-lg transition"
                 >
                   <h3 className="font-bold text-navy group-hover:text-green transition mb-2 line-clamp-2">

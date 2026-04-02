@@ -144,8 +144,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const caseStudy = caseStudies[params.slug];
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const caseStudy = caseStudies[slug];
   if (!caseStudy) {
     return {
       title: 'Case Study Not Found',
@@ -164,8 +165,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const caseStudy = caseStudies[params.slug];
+export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const caseStudy = caseStudies[slug];
 
   if (!caseStudy) {
     return (
