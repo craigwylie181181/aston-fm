@@ -13,9 +13,11 @@ function AstonFMLogo({ size = 40 }: { size?: number }) {
           <stop offset="100%" stopColor="#3b7dd8" />
         </linearGradient>
       </defs>
+      {/* Building icon */}
       <rect x="20" y="40" width="30" height="60" rx="3" fill="url(#brandGrad)" />
       <rect x="55" y="20" width="25" height="80" rx="3" fill="url(#brandGrad)" opacity="0.85" />
       <rect x="85" y="50" width="20" height="50" rx="3" fill="url(#brandGrad)" opacity="0.7" />
+      {/* Windows */}
       <rect x="27" y="48" width="7" height="6" rx="1" fill="white" opacity="0.9" />
       <rect x="37" y="48" width="7" height="6" rx="1" fill="white" opacity="0.9" />
       <rect x="27" y="60" width="7" height="6" rx="1" fill="white" opacity="0.9" />
@@ -30,6 +32,7 @@ function AstonFMLogo({ size = 40 }: { size?: number }) {
       <rect x="90" y="58" width="7" height="6" rx="1" fill="white" opacity="0.9" />
       <rect x="90" y="70" width="7" height="6" rx="1" fill="white" opacity="0.9" />
       <rect x="90" y="82" width="7" height="6" rx="1" fill="white" opacity="0.9" />
+      {/* Gear accent */}
       <circle cx="95" cy="30" r="14" stroke="url(#brandGrad)" strokeWidth="4" fill="none" opacity="0.5" />
       <circle cx="95" cy="30" r="5" fill="url(#brandGrad)" opacity="0.5" />
     </svg>
@@ -41,14 +44,20 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <div className="min-h-screen">
+      {/* Navigation */}
       <nav className={`nav ${isScrolled ? 'scrolled' : ''}`}>
         <div className="nav-logo">
           <AstonFMLogo size={38} />
@@ -69,6 +78,7 @@ export default function Home() {
         </div>
       </nav>
 
+      {/* Hero Section */}
       <section className="hero">
         <div className="hero-tag">FM Consulting &amp; Advisory</div>
         <h1>Smarter facilities management, <span className="hero-highlight">without the headcount</span></h1>
@@ -93,6 +103,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Services Section */}
       <section id="services" className="services">
         <div className="section-container">
           <div className="section-header">
@@ -149,10 +160,25 @@ export default function Home() {
                 <span className="service-link">Learn more &#x2192;</span>
               </div>
             </Link>
+            <Link href="/services/contract-mobilisation" className="service-card" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.85) 70%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&h=600&fit=crop)' }}>
+              <div className="service-card-content">
+                <h3>Contract Mobilisation &amp; Support</h3>
+                <p>End-to-end mobilisation planning, TUPE coordination, supply chain setup, and workforce onboarding for FM contract transitions.</p>
+                <span className="service-link">Learn more &#x2192;</span>
+              </div>
+            </Link>
+            <Link href="/services/back-office-automation" className="service-card" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.85) 70%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop)' }}>
+              <div className="service-card-content">
+                <h3>Back-Office Automation</h3>
+                <p>Streamlined admin, procurement, HR mobilisation, invoice processing, and workflow transformation for FM operations.</p>
+                <span className="service-link">Learn more &#x2192;</span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
 
+      {/* Sectors Section */}
       <section id="sectors" className="sectors">
         <div className="section-container">
           <div className="section-header">
@@ -180,16 +206,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Feature Split Section */}
       <section className="feature-split">
         <div className="section-container">
           <div className="feature-split-content">
             <div className="feature-split-text">
               <h2>Why clients choose Aston FM</h2>
-              <p>We&apos;re not a traditional FM provider with hundreds of operatives. We&apos;re a lean consulting team that uses AI, data, and deep sector knowledge to give you the strategic oversight of a large FM department \u2014 at a fraction of the cost.</p>
+              <p>We&apos;re not a traditional FM provider with hundreds of operatives. We&apos;re a lean consulting team that uses AI, data, and deep sector knowledge to give you the strategic oversight of a large FM department — at a fraction of the cost.</p>
               <ul className="feature-checklist">
                 <li>AI-powered reporting that saves hours every week</li>
                 <li>Senior FM expertise without full-time salary costs</li>
-                <li>Flexible engagement \u2014 retainer, project, or per-bid</li>
+                <li>Flexible engagement — retainer, project, or per-bid</li>
                 <li>Data-driven insights, not just opinions</li>
                 <li>ESG and sustainability built into everything we do</li>
               </ul>
@@ -201,6 +228,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Insights Section */}
       <section id="insights" className="insights">
         <div className="section-container">
           <div className="section-header">
@@ -220,7 +248,7 @@ export default function Home() {
               <div className="insight-card-image">&#x1F916;</div>
               <div className="insight-card-content">
                 <span className="insight-category">AI &amp; FM</span>
-                <h3>How AI Is Changing FM Consulting \u2014 and Why It Matters</h3>
+                <h3>How AI Is Changing FM Consulting — and Why It Matters</h3>
                 <p>The practical ways AI is already transforming reporting, bid writing, and performance analysis in facilities management.</p>
               </div>
             </div>
@@ -236,6 +264,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonial Section */}
       <section className="testimonial">
         <div className="testimonial-content">
           <div className="testimonial-quote">Aston FM gave us the strategic FM oversight we needed without the cost of building an in-house team. Their dashboards and ESG reporting transformed how our board sees facilities management.</div>
@@ -244,6 +273,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CTA Section */}
       <section id="contact" className="cta-section">
         <h2>Ready for smarter facilities management?</h2>
         <p>Book a free discovery call to explore how our lean FM consulting model can deliver the insights and savings your organisation needs.</p>
@@ -253,6 +283,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="footer">
         <div className="footer-container">
           <div className="footer-grid">
@@ -270,6 +301,8 @@ export default function Home() {
                 <li><Link href="/services/tender-bid-support">Tender &amp; Bid Support</Link></li>
                 <li><Link href="/services/energy-savings">Energy-Savings Advisory</Link></li>
                 <li><Link href="/services/fm-outsourcing">FM Outsourcing Advisory</Link></li>
+                <li><Link href="/services/contract-mobilisation">Contract Mobilisation</Link></li>
+                <li><Link href="/services/back-office-automation">Back-Office Automation</Link></li>
               </ul>
             </div>
             <div className="footer-column">
@@ -303,4 +336,3 @@ export default function Home() {
     </div>
   );
 }
-
