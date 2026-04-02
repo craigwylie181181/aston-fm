@@ -65,39 +65,39 @@ export default function Home() {
           </div>
         </div>
         <div className="nav-middle">
-          <a href="#services" className="nav-link">What We Do</a>
+          <a href="#services" className="nav-link">Services</a>
           <a href="#sectors" className="nav-link">Sectors</a>
           <a href="#insights" className="nav-link">Insights</a>
           <a href="#about" className="nav-link">About Us</a>
-          <a href="#careers" className="nav-link">Careers</a>
+          <a href="#contact" className="nav-link">Contact</a>
         </div>
         <div className="nav-right">
           <button className="nav-search" title="Search">&#x2315;</button>
-          <button className="btn-cta">Contact Us</button>
+          <button className="btn-cta">Get in Touch</button>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section className="hero">
-        <div className="hero-tag">Integrated Facilities Management</div>
-        <h1>Transforming the way <span className="hero-highlight">facilities</span> are managed</h1>
-        <p>Delivering innovative, technology-driven facilities management solutions that help organisations reduce costs, improve efficiency, and create better working environments.</p>
+        <div className="hero-tag">FM Consulting &amp; Advisory</div>
+        <h1>Smarter facilities management, <span className="hero-highlight">without the headcount</span></h1>
+        <p>Expert FM consulting, ESG reporting, and performance management for organisations that want strategic oversight without building a large in-house team. AI-powered. Lean. Results-driven.</p>
         <div className="hero-buttons">
-          <button className="btn-primary">Our Services</button>
-          <button className="btn-secondary">Learn More</button>
+          <button className="btn-primary">Explore Our Services</button>
+          <button className="btn-secondary">Book a Discovery Call</button>
         </div>
         <div className="hero-stats">
           <div className="hero-stat">
             <div className="hero-stat-number">15+</div>
-            <div className="hero-stat-label">Years Experience</div>
+            <div className="hero-stat-label">Years FM Experience</div>
           </div>
           <div className="hero-stat">
-            <div className="hero-stat-number">500+</div>
-            <div className="hero-stat-label">Projects Delivered</div>
+            <div className="hero-stat-number">30%</div>
+            <div className="hero-stat-label">Avg. Cost Reduction</div>
           </div>
           <div className="hero-stat">
             <div className="hero-stat-number">98%</div>
-            <div className="hero-stat-label">Client Satisfaction</div>
+            <div className="hero-stat-label">Client Retention</div>
           </div>
         </div>
       </section>
@@ -106,44 +106,50 @@ export default function Home() {
       <section id="services" className="services">
         <div className="section-container">
           <div className="section-header">
-            <h2 className="section-title">Our Services</h2>
-            <p className="section-subtitle">Comprehensive facilities management solutions tailored to your organisation&apos;s needs</p>
+            <h2 className="section-title">What We Deliver</h2>
+            <p className="section-subtitle">Lean, AI-enhanced FM consulting services that give you strategic oversight without the overhead</p>
           </div>
           <div className="services-grid">
             <div className="service-card">
-              <div className="service-icon">&#x1F527;</div>
-              <h3>Hard FM Services</h3>
-              <p>Professional maintenance of building systems and infrastructure including HVAC, electrical systems, plumbing, and fire safety systems.</p>
+              <div className="service-icon">&#x1F4CA;</div>
+              <h3>ESG Reporting for FM Portfolios</h3>
+              <p>Baseline data collection, Scope 1 &amp; 2 carbon templates, monthly sustainability dashboards, and narrative reporting to keep your ESG commitments on track.</p>
               <a href="#" className="service-link">Learn more &#x2192;</a>
             </div>
             <div className="service-card">
-              <div className="service-icon">&#x1F9F9;</div>
-              <h3>Soft FM Services</h3>
-              <p>Comprehensive facility support services including professional cleaning, security, waste management, and landscaping solutions.</p>
-              <a href="#" className="service-link">Learn more &#x2192;</a>
-            </div>
-            <div className="service-card">
-              <div className="service-icon">&#x26A1;</div>
-              <h3>Energy Management</h3>
-              <p>Strategic energy audits, sustainability consulting, and carbon reduction programmes to lower operational costs and environmental impact.</p>
+              <div className="service-icon">&#x1F4C8;</div>
+              <h3>FM Performance Dashboard</h3>
+              <p>Real-time visibility across SLAs, planned maintenance, reactive works, complaints, energy usage, costs, and action tracking — all in one live dashboard.</p>
               <a href="#" className="service-link">Learn more &#x2192;</a>
             </div>
             <div className="service-card">
               <div className="service-icon">&#x1F4CB;</div>
-              <h3>Project Management</h3>
-              <p>Expert management of fit-outs, refurbishments, relocations, and capital projects from conception through successful delivery.</p>
+              <h3>Project Management Oversight</h3>
+              <p>Programme management, risk logs, contractor coordination, and status reporting for fit-outs, refurbishments, and capital projects from start to close.</p>
               <a href="#" className="service-link">Learn more &#x2192;</a>
             </div>
             <div className="service-card">
-              <div className="service-icon">&#x2713;</div>
-              <h3>Compliance &amp; Safety</h3>
-              <p>Comprehensive health and safety audits, fire risk assessments, and regulatory compliance management to ensure workplace safety.</p>
+              <div className="service-icon">&#x1F4B0;</div>
+              <h3>FM Cost-Reduction Review</h3>
+              <p>Benchmarking your FM spend against industry standards, identifying savings opportunities, and delivering a prioritised roadmap to reduce operational costs.</p>
               <a href="#" className="service-link">Learn more &#x2192;</a>
             </div>
             <div className="service-card">
-              <div className="service-icon">&#x1F916;</div>
-              <h3>Technology Solutions</h3>
-              <p>Cutting-edge smart building technology, BMS integration, IoT monitoring, and CAFM systems for intelligent facility management.</p>
+              <div className="service-icon">&#x1F4DD;</div>
+              <h3>Tender &amp; Bid Support</h3>
+              <p>Expert proposal writing, compliance matrices, method statements, and ESG responses that help you win more contracts and stand out in competitive bids.</p>
+              <a href="#" className="service-link">Learn more &#x2192;</a>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">&#x26A1;</div>
+              <h3>Energy-Savings Advisory</h3>
+              <p>Lightweight energy audits, utility bill reviews, and retrofit roadmaps that identify quick wins and long-term savings with clear payback timelines.</p>
+              <a href="#" className="service-link">Learn more &#x2192;</a>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">&#x1F50D;</div>
+              <h3>FM Outsourcing Advisory</h3>
+              <p>Scope definition, SLA and KPI design, vendor evaluation, and transition planning to help you outsource FM services with confidence and control.</p>
               <a href="#" className="service-link">Learn more &#x2192;</a>
             </div>
           </div>
@@ -155,24 +161,24 @@ export default function Home() {
         <div className="section-container">
           <div className="section-header">
             <h2 className="section-title">Industries We Serve</h2>
-            <p className="section-subtitle">Delivering specialised facilities management across diverse sectors</p>
+            <p className="section-subtitle">Strategic FM advisory across sectors where performance, compliance, and cost control matter most</p>
           </div>
           <div className="sectors-grid">
             <div className="sector-card">
               <h3>Corporate &amp; Commercial</h3>
-              <p>Office spaces, business parks, and corporate headquarters requiring integrated facility management solutions and efficiency optimisation.</p>
+              <p>Office portfolios, business parks, and multi-site operations needing consistent FM performance reporting and cost optimisation across locations.</p>
             </div>
             <div className="sector-card">
               <h3>Healthcare</h3>
-              <p>Hospitals, clinics, and medical facilities requiring strict compliance, specialised maintenance, and critical infrastructure management.</p>
+              <p>Hospitals, clinics, and care facilities requiring strict compliance oversight, critical maintenance reporting, and ESG accountability.</p>
             </div>
             <div className="sector-card">
               <h3>Education</h3>
-              <p>Universities, schools, and educational institutions with complex facilities requiring flexible and responsive management solutions.</p>
+              <p>Universities and schools with complex estates that need transparent performance data, energy reduction strategies, and project oversight.</p>
             </div>
             <div className="sector-card">
               <h3>Government &amp; Public Sector</h3>
-              <p>Public buildings, government agencies, and civic facilities requiring compliance and cost-effective facility operations.</p>
+              <p>Public buildings and civic estates where FM transparency, value for money, and sustainability reporting are non-negotiable.</p>
             </div>
           </div>
         </div>
@@ -183,18 +189,18 @@ export default function Home() {
         <div className="section-container">
           <div className="feature-split-content">
             <div className="feature-split-text">
-              <h2>Why organisations choose Aston FM</h2>
-              <p>We combine industry expertise, advanced technology, and a commitment to excellence to deliver facilities management solutions that drive real business value. Our approach focuses on understanding your unique challenges and delivering tailored solutions.</p>
+              <h2>Why clients choose Aston FM</h2>
+              <p>We&apos;re not a traditional FM provider with hundreds of operatives. We&apos;re a lean consulting team that uses AI, data, and deep sector knowledge to give you the strategic oversight of a large FM department — at a fraction of the cost.</p>
               <ul className="feature-checklist">
-                <li>Proactive maintenance reducing emergency breakdowns</li>
-                <li>Cost optimisation through strategic resource planning</li>
-                <li>Technology integration for real-time facility insights</li>
-                <li>Expert team with deep sector knowledge</li>
-                <li>Sustainable practices reducing environmental impact</li>
+                <li>AI-powered reporting that saves hours every week</li>
+                <li>Senior FM expertise without full-time salary costs</li>
+                <li>Flexible engagement — retainer, project, or per-bid</li>
+                <li>Data-driven insights, not just opinions</li>
+                <li>ESG and sustainability built into everything we do</li>
               </ul>
             </div>
             <div className="feature-split-image">
-              Innovative Facilities Solutions
+              Strategic FM Advisory
             </div>
           </div>
         </div>
@@ -205,31 +211,31 @@ export default function Home() {
         <div className="section-container">
           <div className="section-header">
             <h2 className="section-title">Latest Insights</h2>
-            <p className="section-subtitle">Expert perspectives on facilities management trends and best practices</p>
+            <p className="section-subtitle">Perspectives on FM consulting, ESG compliance, and operational performance</p>
           </div>
           <div className="insights-grid">
             <div className="insight-card">
-              <div className="insight-card-image">&#x1F3E2;</div>
+              <div className="insight-card-image">&#x1F4CA;</div>
               <div className="insight-card-content">
-                <span className="insight-category">Technology</span>
-                <h3>The Future of Smart Building Management</h3>
-                <p>Exploring how IoT, AI, and integrated systems are revolutionising facility operations and creating more responsive, efficient buildings.</p>
+                <span className="insight-category">ESG</span>
+                <h3>Getting Scope 1 &amp; 2 Right: A Practical Guide for FM Teams</h3>
+                <p>How to build a reliable carbon baseline for your facilities portfolio without drowning in data collection complexity.</p>
               </div>
             </div>
             <div className="insight-card">
-              <div className="insight-card-image">&#x1F331;</div>
+              <div className="insight-card-image">&#x1F916;</div>
               <div className="insight-card-content">
-                <span className="insight-category">Sustainability</span>
-                <h3>Sustainability in Facilities Management: A 2026 Perspective</h3>
-                <p>How organisations are embracing sustainable practices, reducing carbon footprints, and meeting environmental commitments through FM innovation.</p>
+                <span className="insight-category">AI &amp; FM</span>
+                <h3>How AI Is Changing FM Consulting — and Why It Matters</h3>
+                <p>The practical ways AI is already transforming reporting, bid writing, and performance analysis in facilities management.</p>
               </div>
             </div>
             <div className="insight-card">
               <div className="insight-card-image">&#x1F4B0;</div>
               <div className="insight-card-content">
-                <span className="insight-category">Case Study</span>
-                <h3>How Integrated FM Reduces Operational Costs by 30%</h3>
-                <p>Real-world example of how strategic facilities management practices deliver substantial cost savings while improving service quality.</p>
+                <span className="insight-category">Cost Reduction</span>
+                <h3>5 Quick Wins to Cut FM Costs Without Cutting Service Quality</h3>
+                <p>Practical benchmarking and procurement strategies that consistently deliver 20-30% savings across FM portfolios.</p>
               </div>
             </div>
           </div>
@@ -239,19 +245,19 @@ export default function Home() {
       {/* Testimonial Section */}
       <section className="testimonial">
         <div className="testimonial-content">
-          <div className="testimonial-quote">Aston FM has transformed how we manage our facilities. Their proactive approach and technology solutions have saved us significant costs while improving the workplace experience for our staff.</div>
-          <div className="testimonial-author">Michael Richardson</div>
-          <div className="testimonial-role">Facilities Director, Fortune 500 Technology Company</div>
+          <div className="testimonial-quote">Aston FM gave us the strategic FM oversight we needed without the cost of building an in-house team. Their dashboards and ESG reporting transformed how our board sees facilities management.</div>
+          <div className="testimonial-author">Operations Director</div>
+          <div className="testimonial-role">Multi-site Corporate Portfolio, UK</div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="cta-section">
-        <h2>Ready to transform your facilities management?</h2>
-        <p>Let our team of experts develop a tailored facilities management solution for your organisation.</p>
+      <section id="contact" className="cta-section">
+        <h2>Ready for smarter facilities management?</h2>
+        <p>Book a free discovery call to explore how our lean FM consulting model can deliver the insights and savings your organisation needs.</p>
         <div className="cta-buttons">
-          <button className="btn-primary">Get in Touch</button>
-          <button className="btn-secondary">Schedule a Demo</button>
+          <button className="btn-primary">Book a Discovery Call</button>
+          <button className="btn-secondary">View Our Services</button>
         </div>
       </section>
 
@@ -261,26 +267,26 @@ export default function Home() {
           <div className="footer-grid">
             <div className="footer-column footer-brand">
               <h4>Aston FM</h4>
-              <p>Delivering innovative, technology-driven facilities management solutions that help organisations reduce costs, improve efficiency, and create better working environments.</p>
+              <p>Lean FM consulting powered by AI. Strategic oversight, ESG reporting, and performance management for organisations that want results without the overhead.</p>
             </div>
             <div className="footer-column">
               <h4>Services</h4>
               <ul>
-                <li><a href="#">Hard FM Services</a></li>
-                <li><a href="#">Soft FM Services</a></li>
-                <li><a href="#">Energy Management</a></li>
+                <li><a href="#">ESG Reporting</a></li>
+                <li><a href="#">FM Performance Dashboard</a></li>
                 <li><a href="#">Project Management</a></li>
-                <li><a href="#">Compliance &amp; Safety</a></li>
-                <li><a href="#">Technology Solutions</a></li>
+                <li><a href="#">Cost-Reduction Review</a></li>
+                <li><a href="#">Tender &amp; Bid Support</a></li>
+                <li><a href="#">Energy-Savings Advisory</a></li>
+                <li><a href="#">FM Outsourcing Advisory</a></li>
               </ul>
             </div>
             <div className="footer-column">
               <h4>Company</h4>
               <ul>
                 <li><a href="#">About Us</a></li>
-                <li><a href="#">Leadership</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">News</a></li>
+                <li><a href="#">Our Approach</a></li>
+                <li><a href="#">Insights</a></li>
                 <li><a href="#">Contact</a></li>
               </ul>
             </div>
@@ -290,7 +296,6 @@ export default function Home() {
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Terms of Service</a></li>
                 <li><a href="#">Cookie Policy</a></li>
-                <li><a href="#">Modern Slavery Statement</a></li>
               </ul>
             </div>
           </div>
