@@ -611,6 +611,90 @@ button {
   line-height: 1.6;
 }
 
+
+/* Insight Article Pages */
+.insight-article-content {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.insight-article-content h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.insight-article-content p {
+  margin-bottom: 1.25rem;
+  color: var(--color-text);
+}
+
+.insight-article-content ul {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.insight-article-content li {
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+.insight-article-content strong {
+  color: var(--color-navy);
+  font-weight: 600;
+}
+
+/* Insights Index Page */
+.insights-page-hero {
+  margin-top: 70px;
+  background: var(--gradient-dark);
+  padding: 4rem 2rem 2rem;
+  color: var(--color-white);
+}
+
+.insights-tabs {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.insights-tab {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.insights-tab:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.insights-tab.active {
+  background: var(--gradient-brand);
+  color: white;
+  border-color: transparent;
+}
+
+.insights-articles-section {
+  padding: 4rem 2rem;
+  background-color: var(--color-white);
+}
+
+.insights-news-section {
+  padding: 4rem 2rem;
+  background-color: var(--color-light-gray);
+}
+
 /* Testimonial Section */
 .testimonial {
   padding: 5rem 2rem;
