@@ -301,6 +301,7 @@ export default function Home() {
             <h2 className="section-title">Latest Insights</h2>
             <p className="section-subtitle">Perspectives on FM consulting, ESG compliance, and operational performance across the UAE and international markets</p>
             <Link href="/insights" className="btn-cta" style={{ textDecoration: 'none', display: 'inline-block', marginTop: '1rem', fontSize: '0.9rem' }}>View All Insights &amp; Industry News →</Link>
+            <Link href="/insights" className="btn-cta" style={{ textDecoration: 'none', display: 'inline-block', marginTop: '1rem', fontSize: '0.9rem' }}>View All Insights &amp; Industry News →</Link>
           </div>
           <div className="insights-grid-compact">
             <Link href="/insights/esg-scope-guide" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=300&fit=crop)' }}>
