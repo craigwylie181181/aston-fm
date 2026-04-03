@@ -1,8 +1,5 @@
 import { NextResponse } from 'next/server';
 
-// Cache response for 1 hour; Vercel cron refreshes daily at 6am UAE
-export const revalidate = 3600;
-
 interface NewsItem {
   title: string;
   link: string;
