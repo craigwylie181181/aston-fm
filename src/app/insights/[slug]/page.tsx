@@ -330,68 +330,73 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
 
   if (!article) {
     return (
-      <div className="min-h-screen flex flex-col">
-        <header className="border-b border-gray-200">
-          <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <Link href="/" className="flex items-center gap-2">
-              <AstonFMLogo />
-              <span className="text-lg font-bold text-navy">Aston FM</span>
-            </Link>
-            <div className="flex items-center gap-6">
-              <Link href="/#services" className="text-sm text-gray-600 hover:text-navy transition">Services</Link>
-              <Link href="/#sectors" className="text-sm text-gray-600 hover:text-navy transition">Sectors</Link>
-              <Link href="/#insights" className="text-sm text-gray-600 hover:text-navy transition">Insights</Link>
-              <Link href="/#case-studies" className="text-sm text-gray-600 hover:text-navy transition">Case Studies</Link>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-navy transition">
-                <LinkedInIcon />
-              </a>
-              <Link href="/contact" className="px-4 py-2 bg-green text-white rounded hover:bg-opacity-90 transition text-sm">
-                Contact Us
-              </Link>
+      <div className="min-h-screen">
+        <nav className="nav">
+          <Link href="/" className="nav-logo" style={{ background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'none' }}>
+            <AstonFMLogo size={38} />
+            <div className="nav-brand" style={{ color: 'white' }}>
+              Aston <span className="nav-brand-accent">FM</span>
             </div>
-          </nav>
-        </header>
+          </Link>
+          <div className="nav-middle">
+            <Link href="/#services" className="nav-link">Services</Link>
+            <Link href="/#sectors" className="nav-link">Sectors</Link>
+            <Link href="/#insights" className="nav-link">Insights</Link>
+            <Link href="/#case-studies" className="nav-link">Case Studies</Link>
+            <Link href="/#about" className="nav-link">About Us</Link>
+            <Link href="/#contact" className="nav-link">Contact</Link>
+            <Link href="/news" className="nav-link">News</Link>
+          </div>
+          <div className="nav-right">
+            <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
+              <LinkedInIcon size={20} />
+            </a>
+            <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
+          </div>
+        </nav>
 
-        <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <h1 className="text-3xl font-bold text-navy mb-4">Article Not Found</h1>
-          <p className="text-gray-600 mb-8">The article you\u2019re looking for could not be found.</p>
-          <Link href="/#insights" className="text-green hover:underline">Back to Insights</Link>
-        </main>
+        <div className="section-container" style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '4rem 2rem', marginTop: '70px' }}>
+          <h1 className="section-title">Article Not Found</h1>
+          <p style={{ color: '#e5e7eb', marginBottom: '2rem' }}>The article you're looking for could not be found.</p>
+          <Link href="/#insights" className="btn-cta" style={{ textDecoration: 'none', display: 'inline-block' }}>Back to Insights</Link>
+        </div>
 
-        <footer className="bg-navy text-white mt-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="grid grid-cols-4 gap-8">
-              <div>
-                <h3 className="font-bold mb-4">Company</h3>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li><Link href="/about">About Us</Link></li>
-                  <li><Link href="/careers">Careers</Link></li>
+        <footer className="footer" style={{ marginTop: '2rem' }}>
+          <div className="footer-container">
+            <div className="footer-grid">
+              <div className="footer-column">
+                <h3 className="footer-brand">Company</h3>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <li><Link href="/about" style={{ color: '#d1d5db', textDecoration: 'none' }}>About Us</Link></li>
+                  <li><Link href="/careers" style={{ color: '#d1d5db', textDecoration: 'none' }}>Careers</Link></li>
                 </ul>
               </div>
-              <div>
-                <h3 className="font-bold mb-4">Services</h3>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li><a href="#">Hard FM</a></li>
-                  <li><a href="#">Soft FM</a></li>
+              <div className="footer-column">
+                <h3 className="footer-brand">Services</h3>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <li><a href="#" style={{ color: '#d1d5db', textDecoration: 'none' }}>Hard FM</a></li>
+                  <li><a href="#" style={{ color: '#d1d5db', textDecoration: 'none' }}>Soft FM</a></li>
                 </ul>
               </div>
-              <div>
-                <h3 className="font-bold mb-4">Connect</h3>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li><a href="https://linkedin.com">LinkedIn</a></li>
-                  <li><a href="mailto:info@astonfm.ae">Email</a></li>
+              <div className="footer-column">
+                <h3 className="footer-brand">Connect</h3>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <li><a href="https://linkedin.com" style={{ color: '#d1d5db', textDecoration: 'none' }}>LinkedIn</a></li>
+                  <li><a href="mailto:info@astonfm.ae" style={{ color: '#d1d5db', textDecoration: 'none' }}>Email</a></li>
                 </ul>
               </div>
-              <div>
-                <h3 className="font-bold mb-4">Legal</h3>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li><a href="/privacy">Privacy Policy</a></li>
-                  <li><a href="/terms">Terms of Service</a></li>
+              <div className="footer-column">
+                <h3 className="footer-brand">Legal</h3>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <li><a href="/privacy" style={{ color: '#d1d5db', textDecoration: 'none' }}>Privacy Policy</a></li>
+                  <li><a href="/terms" style={{ color: '#d1d5db', textDecoration: 'none' }}>Terms of Service</a></li>
                 </ul>
               </div>
             </div>
-            <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-              <p>&copy; 2026 Aston FM. All rights reserved.</p>
+            <div className="footer-bottom">
+              <div className="footer-bottom-links">
+                <p style={{ margin: 0 }}>&copy; 2026 Aston FM. All rights reserved.</p>
+              </div>
             </div>
           </div>
         </footer>
@@ -400,93 +405,98 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header/Navigation */}
-      <header className="border-b border-gray-200 sticky top-0 bg-white z-50">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-2">
-            <AstonFMLogo />
-            <span className="text-lg font-bold text-navy">Aston FM</span>
-          </Link>
-          <div className="flex items-center gap-6">
-            <Link href="/#services" className="text-sm text-gray-600 hover:text-navy transition">Services</Link>
-            <Link href="/#sectors" className="text-sm text-gray-600 hover:text-navy transition">Sectors</Link>
-            <Link href="/#insights" className="text-sm text-gray-600 hover:text-navy transition">Insights</Link>
-            <Link href="/#case-studies" className="text-sm text-gray-600 hover:text-navy transition">Case Studies</Link>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-navy transition">
-              <LinkedInIcon />
-            </a>
-            <Link href="/contact" className="px-4 py-2 bg-green text-white rounded hover:bg-opacity-90 transition text-sm">
-              Contact Us
-            </Link>
+    <div className="min-h-screen">
+      <nav className="nav">
+        <Link href="/" className="nav-logo" style={{ background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'none' }}>
+          <AstonFMLogo size={38} />
+          <div className="nav-brand" style={{ color: 'white' }}>
+            Aston <span className="nav-brand-accent">FM</span>
           </div>
-        </nav>
-      </header>
+        </Link>
+        <div className="nav-middle">
+          <Link href="/#services" className="nav-link">Services</Link>
+          <Link href="/#sectors" className="nav-link">Sectors</Link>
+          <Link href="/#insights" className="nav-link">Insights</Link>
+          <Link href="/#case-studies" className="nav-link">Case Studies</Link>
+          <Link href="/#about" className="nav-link">About Us</Link>
+          <Link href="/#contact" className="nav-link">Contact</Link>
+          <Link href="/news" className="nav-link">News</Link>
+        </div>
+        <div className="nav-right">
+          <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
+            <LinkedInIcon size={20} />
+          </a>
+          <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
+        </div>
+      </nav>
 
       {/* Main Content */}
-      <main className="flex-grow">
+      <main style={{ paddingTop: '70px' }}>
         {/* Back Link */}
-        <div className="bg-gray-50 border-b border-gray-200">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <Link href="/#insights" className="text-green hover:text-opacity-80 transition text-sm flex items-center gap-1">
+        <div style={{ padding: '1rem 0', marginBottom: '1rem' }}>
+          <div className="section-container" style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
+            <Link href="/#insights" style={{ color: '#00b67a', textDecoration: 'none', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
               &larr; Back to Insights
             </Link>
           </div>
         </div>
 
         {/* Hero Banner */}
-        <div className="article-hero relative h-96 overflow-hidden">
+        <div className="insight-article-hero">
           <img
             src={article.imageUrl}
             alt={article.title}
-            className="w-full h-full object-cover"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+          <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0, 0, 0, 0.4)' }}></div>
         </div>
 
         {/* Article Content */}
-        <article className="article-body max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <header className="mb-8">
-            <h1 className="text-4xl font-bold text-navy mb-4">{article.title}</h1>
-            <div className="flex gap-6 text-sm text-gray-600">
-              <time dateTime={article.date}>{article.date}</time>
-              <span>{article.readingTime} min read</span>
+        <article className="insight-article-body">
+          <div className="section-container">
+            <header style={{ marginBottom: '2rem' }}>
+              <h1 className="section-title" style={{ marginBottom: '1rem' }}>{article.title}</h1>
+              <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.875rem', color: '#d1d5db' }}>
+                <time dateTime={article.date}>{article.date}</time>
+                <span>{article.readingTime} min read</span>
+              </div>
+            </header>
+
+            <div style={{ color: '#e5e7eb', lineHeight: '1.75', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              {article.content}
             </div>
-          </header>
 
-          <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
-            {article.content}
-          </div>
-
-          {/* Article Footer */}
-          <div className="mt-16 pt-8 border-t border-gray-200">
-            <div className="flex flex-col gap-4">
-              <p className="text-sm text-gray-600">
-                Share your thoughts or discuss this article with our team.
-              </p>
-              <Link href="/contact" className="inline-block px-6 py-3 bg-green text-white rounded hover:bg-opacity-90 transition font-medium w-fit">
-                Get in Touch
-              </Link>
+            {/* Article Footer */}
+            <div style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid #374151' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <p style={{ fontSize: '0.875rem', color: '#d1d5db', margin: 0 }}>
+                  Share your thoughts or discuss this article with our team.
+                </p>
+                <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none', display: 'inline-block', fontWeight: 500, width: 'fit-content' }}>
+                  Get in Touch
+                </Link>
+              </div>
             </div>
           </div>
         </article>
 
         {/* Related Articles Section */}
-        <section className="bg-gray-50 py-16 mt-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-navy mb-8">More Insights</h2>
-            <div className="grid grid-cols-2 gap-6">
+        <section style={{ marginTop: '4rem', paddingTop: '4rem', paddingBottom: '4rem' }}>
+          <div className="section-container">
+            <h2 className="section-title" style={{ marginBottom: '2rem' }}>More Insights</h2>
+            <div className="insights-grid">
               {Object.entries(insightsData).filter(([s]) => s !== slug).slice(0, 4).map(([s, data]) => (
                 <Link
                   key={s}
                   href={`/insights/${s}`}
-                  className="group bg-white p-6 rounded-lg border border-gray-200 hover:border-green hover:shadow-lg transition"
+                  className="insight-card"
+                  style={{ textDecoration: 'none' }}
                 >
-                  <h3 className="font-bold text-navy group-hover:text-green transition mb-2 line-clamp-2">
+                  <h3 style={{ fontWeight: 'bold', color: '#001a4d', marginBottom: '0.5rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                     {data.title}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">{data.date}</p>
-                  <span className="text-sm text-green font-medium group-hover:underline">Read Article &rarr;</span>
+                  <p style={{ fontSize: '0.875rem', color: '#9ca3af', marginBottom: '1rem', margin: 0 }}>{data.date}</p>
+                  <span style={{ fontSize: '0.875rem', color: '#00b67a', fontWeight: 500 }}>Read Article &rarr;</span>
                 </Link>
               ))}
             </div>
@@ -495,40 +505,42 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
       </main>
 
       {/* Footer */}
-      <footer className="bg-navy text-white mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-4 gap-8">
-            <div>
-              <h3 className="font-bold mb-4">Company</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li><Link href="/about">About Us</Link></li>
-                <li><Link href="/careers">Careers</Link></li>
+      <footer className="footer" style={{ marginTop: '4rem' }}>
+        <div className="footer-container">
+          <div className="footer-grid">
+            <div className="footer-column">
+              <h3 className="footer-brand">Company</h3>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <li><Link href="/about" style={{ color: '#d1d5db', textDecoration: 'none' }}>About Us</Link></li>
+                <li><Link href="/careers" style={{ color: '#d1d5db', textDecoration: 'none' }}>Careers</Link></li>
               </ul>
             </div>
-            <div>
-              <h3 className="font-bold mb-4">Services</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li><a href="#">Hard FM</a></li>
-                <li><a href="#">Soft FM</a></li>
+            <div className="footer-column">
+              <h3 className="footer-brand">Services</h3>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <li><a href="#" style={{ color: '#d1d5db', textDecoration: 'none' }}>Hard FM</a></li>
+                <li><a href="#" style={{ color: '#d1d5db', textDecoration: 'none' }}>Soft FM</a></li>
               </ul>
             </div>
-            <div>
-              <h3 className="font-bold mb-4">Connect</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li><a href="https://linkedin.com">LinkedIn</a></li>
-                <li><a href="mailto:info@astonfm.ae">Email</a></li>
+            <div className="footer-column">
+              <h3 className="footer-brand">Connect</h3>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <li><a href="https://linkedin.com" style={{ color: '#d1d5db', textDecoration: 'none' }}>LinkedIn</a></li>
+                <li><a href="mailto:info@astonfm.ae" style={{ color: '#d1d5db', textDecoration: 'none' }}>Email</a></li>
               </ul>
             </div>
-            <div>
-              <h3 className="font-bold mb-4">Legal</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li><a href="/privacy">Privacy Policy</a></li>
-                <li><a href="/terms">Terms of Service</a></li>
+            <div className="footer-column">
+              <h3 className="footer-brand">Legal</h3>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <li><a href="/privacy" style={{ color: '#d1d5db', textDecoration: 'none' }}>Privacy Policy</a></li>
+                <li><a href="/terms" style={{ color: '#d1d5db', textDecoration: 'none' }}>Terms of Service</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2026 Aston FM. All rights reserved.</p>
+          <div className="footer-bottom">
+            <div className="footer-bottom-links">
+              <p style={{ margin: 0 }}>&copy; 2026 Aston FM. All rights reserved.</p>
+            </div>
           </div>
         </div>
       </footer>
