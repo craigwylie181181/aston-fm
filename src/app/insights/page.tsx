@@ -73,8 +73,23 @@ export default function InsightsPage() {
       .catch(() => setLoading(false));
   }, []);
 
-  const sources = ['all', ...Array.from(new Set(newsItems.map(item => item.source)))];
-  const filteredNews = sourceFilter === 'all' ? newsItems : newsItems.filter(item => item.source === sourceFilter);
+  // Map sources to service categories
+  const sourceToCategory: Record<string, string> = {
+    'FacilitiesNet': 'Facilities Management',
+    'FM World': 'Facilities Management',
+    'FMLink': 'Facilities Management',
+    'Facilitate': 'Facilities Management',
+    'Arabian Business RE': 'Real Estate',
+    'Zawya Real Estate': 'Real Estate',
+    'Property Funds World': 'Real Estate',
+    'ESG Today': 'ESG & Sustainability',
+    'GreenBiz': 'ESG & Sustainability',
+    'edie': 'ESG & Sustainability',
+    'ESG News': 'ESG & Sustainability',
+  };
+  const getCategory = (source: string) => sourceToCategory[source] || 'Industry';
+  const categories = ['all', 'Facilities Management', 'Real Estate', 'ESG & Sustainability'];
+  const filteredNews = sourceFilter === 'all' ? newsItems : newsItems.filter(item => getCategory(item.source) === sourceFilter);
 
   const formatDate = (dateStr: string) => {
     try {
@@ -84,18 +99,18 @@ export default function InsightsPage() {
     }
   };
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen">
       {/* Navigation */}
       <nav className="nav">
-        <button onClick={scrollToTop} className="nav-logo" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+        <Link href="/" className="nav-logo" style={{ background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'none' }}>
           <AstonFMLogo size={38} />
           <div className="nav-brand" style={{ color: 'white' }}>
             Aston <span className="nav-brand-accent">FM</span>
           </div>
-        </button>
+        </Link>
         <div className="nav-middle">
           <Link href="/#services" className="nav-link">Services</Link>
           <Link href="/#sectors" className="nav-link">Sectors</Link>
@@ -109,8 +124,21 @@ export default function InsightsPage() {
             <LinkedInIcon size={20} />
           </a>
           <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
+          <button className="nav-hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Menu">
+            <span /><span /><span />
+          </button>
         </div>
       </nav>
+      {mobileMenuOpen && (
+        <div className="mobile-menu">
+          <Link href="/#services" onClick={() => setMobileMenuOpen(false)}>Services</Link>
+          <Link href="/#sectors" onClick={() => setMobileMenuOpen(false)}>Sectors</Link>
+          <Link href="/insights" onClick={() => setMobileMenuOpen(false)}>Insights</Link>
+          <Link href="/#case-studies" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
+          <Link href="/#about" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
+          <Link href="/#contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+        </div>
+      )}
 
       {/* Hero */}
       <div className="insights-page-hero">
@@ -190,15 +218,15 @@ export default function InsightsPage() {
               Curated news from across FM, real estate, and ESG — updated daily
             </p>
 
-            {/* Source Filter */}
+            {/* Category Filter */}
             <div className="news-filters">
-              {sources.map(source => (
+              {categories.map(cat => (
                 <button
-                  key={source}
-                  className={`news-filter-btn ${sourceFilter === source ? 'active' : ''}`}
-                  onClick={() => setSourceFilter(source)}
+                  key={cat}
+                  className={`news-filter-btn ${sourceFilter === cat ? 'active' : ''}`}
+                  onClick={() => setSourceFilter(cat)}
                 >
-                  {source === 'all' ? 'All Sources' : source}
+                  {cat === 'all' ? 'All Categories' : cat}
                 </button>
               ))}
             </div>
@@ -212,9 +240,9 @@ export default function InsightsPage() {
               <div className="news-grid">
                 {filteredNews.map((item, i) => (
                   <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" className="news-card">
-                    <div className="news-card-source">{item.source}</div>
+                    <div className="news-card-source">{getCategory(item.source)}</div>
                     <h3 className="news-card-title">{item.title}</h3>
-                    <div className="news-card-date">{formatDate(item.date)}</div>
+                    <div className="news-card-date">{item.source} &middot; {formatDate(item.date)}</div>
                   </a>
                 ))}
               </div>

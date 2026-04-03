@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import AstonFMLogo from '@/components/AstonFMLogo';
 import LinkedInIcon from '@/components/LinkedInIcon';
+import MobileNav from '@/components/MobileNav';
 
 type Slug = 'esg-scope-guide' | 'ai-changing-fm' | 'fm-cost-quick-wins' | 'uae-fm-market-outlook' | 'contract-mobilisation-best-practices' | 'energy-management-gulf';
 
@@ -341,24 +342,24 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
           <div className="nav-middle">
             <Link href="/#services" className="nav-link">Services</Link>
             <Link href="/#sectors" className="nav-link">Sectors</Link>
-            <Link href="/#insights" className="nav-link">Insights</Link>
+            <Link href="/insights" className="nav-link">Insights</Link>
             <Link href="/#case-studies" className="nav-link">Case Studies</Link>
             <Link href="/#about" className="nav-link">About Us</Link>
             <Link href="/#contact" className="nav-link">Contact</Link>
-            <Link href="/news" className="nav-link">News</Link>
           </div>
           <div className="nav-right">
             <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
               <LinkedInIcon size={20} />
             </a>
             <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
+            <MobileNav />
           </div>
         </nav>
 
         <div className="section-container" style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '4rem 2rem', marginTop: '70px' }}>
           <h1 className="section-title">Article Not Found</h1>
           <p style={{ color: '#e5e7eb', marginBottom: '2rem' }}>The article you're looking for could not be found.</p>
-          <Link href="/#insights" className="btn-cta" style={{ textDecoration: 'none', display: 'inline-block' }}>Back to Insights</Link>
+          <Link href="/insights" className="btn-cta" style={{ textDecoration: 'none', display: 'inline-block' }}>Back to Insights</Link>
         </div>
 
         <footer className="footer" style={{ marginTop: '2rem' }}>
@@ -416,17 +417,17 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
         <div className="nav-middle">
           <Link href="/#services" className="nav-link">Services</Link>
           <Link href="/#sectors" className="nav-link">Sectors</Link>
-          <Link href="/#insights" className="nav-link">Insights</Link>
+          <Link href="/insights" className="nav-link">Insights</Link>
           <Link href="/#case-studies" className="nav-link">Case Studies</Link>
           <Link href="/#about" className="nav-link">About Us</Link>
           <Link href="/#contact" className="nav-link">Contact</Link>
-          <Link href="/news" className="nav-link">News</Link>
         </div>
         <div className="nav-right">
           <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
             <LinkedInIcon size={20} />
           </a>
           <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
+          <MobileNav />
         </div>
       </nav>
 
@@ -435,7 +436,7 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
         {/* Back Link */}
         <div style={{ padding: '1rem 0', marginBottom: '1rem' }}>
           <div className="section-container" style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
-            <Link href="/#insights" style={{ color: '#00b67a', textDecoration: 'none', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+            <Link href="/insights" style={{ color: '#00b67a', textDecoration: 'none', fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
               &larr; Back to Insights
             </Link>
           </div>
@@ -456,20 +457,20 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
           <div className="section-container">
             <header style={{ marginBottom: '2rem' }}>
               <h1 className="section-title" style={{ marginBottom: '1rem' }}>{article.title}</h1>
-              <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.875rem', color: '#d1d5db' }}>
+              <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.875rem', color: 'rgba(255,255,255,0.7)' }}>
                 <time dateTime={article.date}>{article.date}</time>
                 <span>{article.readingTime} min read</span>
               </div>
             </header>
 
-            <div style={{ color: '#e5e7eb', lineHeight: '1.75', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div className="insight-article-content" style={{ lineHeight: '1.75', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {article.content}
             </div>
 
             {/* Article Footer */}
-            <div style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid #374151' }}>
+            <div style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.2)' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <p style={{ fontSize: '0.875rem', color: '#d1d5db', margin: 0 }}>
+                <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.7)', margin: 0 }}>
                   Share your thoughts or discuss this article with our team.
                 </p>
                 <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none', display: 'inline-block', fontWeight: 500, width: 'fit-content' }}>

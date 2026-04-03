@@ -79,6 +79,7 @@ function LinkedInIcon({ size = 20 }: { size?: number }) {
 /* ── Main Page ──────────────────────────────────────────────── */
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -101,19 +102,31 @@ export default function Home() {
         <div className="nav-middle">
           <a href="#services" className="nav-link">Services</a>
           <a href="#sectors" className="nav-link">Sectors</a>
-          <a href="#insights" className="nav-link">Insights</a>
+          <Link href="/insights" className="nav-link">Insights</Link>
           <a href="#case-studies" className="nav-link">Case Studies</a>
           <a href="#about" className="nav-link">About Us</a>
           <a href="#contact" className="nav-link">Contact</a>
-          <Link href="/insights" className="nav-link">News</Link>
         </div>
         <div className="nav-right">
           <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
             <LinkedInIcon size={20} />
           </a>
           <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
+          <button className="nav-hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Menu">
+            <span /><span /><span />
+          </button>
         </div>
       </nav>
+      {mobileMenuOpen && (
+        <div className="mobile-menu">
+          <a href="#services" onClick={() => setMobileMenuOpen(false)}>Services</a>
+          <a href="#sectors" onClick={() => setMobileMenuOpen(false)}>Sectors</a>
+          <Link href="/insights" onClick={() => setMobileMenuOpen(false)}>Insights</Link>
+          <a href="#case-studies" onClick={() => setMobileMenuOpen(false)}>Case Studies</a>
+          <a href="#about" onClick={() => setMobileMenuOpen(false)}>About Us</a>
+          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+        </div>
+      )}
 
       {/* News Ticker */}
       <NewsTicker />
@@ -230,7 +243,7 @@ export default function Home() {
             <p className="section-subtitle">Strategic FM advisory across the UAE and international markets where performance, compliance, and cost control matter most</p>
           </div>
           <div className="sectors-grid-photo">
-            <Link href="#sectors" className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=800&h=500&fit=crop)' }}>
+            <Link href="#sectors" className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=500&fit=crop)' }}>
               <div className="sector-card-photo-content">
                 <h3>Oil &amp; Gas</h3>
                 <p>FM advisory for upstream, downstream, and petrochemical facilities across the UAE and Gulf region. Compliance-driven maintenance oversight, asset management, and ESG reporting for energy sector portfolios.</p>
@@ -300,7 +313,6 @@ export default function Home() {
           <div className="section-header">
             <h2 className="section-title">Latest Insights</h2>
             <p className="section-subtitle">Perspectives on FM consulting, ESG compliance, and operational performance across the UAE and international markets</p>
-            <Link href="/insights" className="btn-cta" style={{ textDecoration: 'none', display: 'inline-block', marginTop: '1rem', fontSize: '0.9rem' }}>View All Insights &amp; Industry News →</Link>
             <Link href="/insights" className="btn-cta" style={{ textDecoration: 'none', display: 'inline-block', marginTop: '1rem', fontSize: '0.9rem' }}>View All Insights &amp; Industry News →</Link>
           </div>
           <div className="insights-grid-compact">

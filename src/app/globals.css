@@ -611,7 +611,6 @@ button {
   line-height: 1.6;
 }
 
-
 /* Insight Article Pages */
 .insight-article-content {
   font-size: 1.05rem;
@@ -646,6 +645,46 @@ button {
 .insight-article-content strong {
   color: var(--color-navy);
   font-weight: 600;
+}
+
+/* Insight Article Page Layout */
+.insight-article-hero {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+}
+.insight-article-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.insight-article-body {
+  background: var(--gradient-dark);
+  padding: 3rem 2rem 4rem;
+}
+.insight-article-body .section-title {
+  color: white;
+}
+.insight-article-body header time,
+.insight-article-body header span {
+  color: rgba(255,255,255,0.7) !important;
+}
+.insight-article-body .insight-article-content,
+.insight-article-body .insight-article-content p,
+.insight-article-body .insight-article-content li {
+  color: rgba(255,255,255,0.9);
+}
+.insight-article-body .insight-article-content h2 {
+  color: white;
+}
+.insight-article-body .insight-article-content strong {
+  color: var(--color-green);
+}
+
+@media (max-width: 768px) {
+  .insight-article-hero { height: 200px; }
+  .insight-article-body { padding: 2rem 1rem 3rem; }
 }
 
 /* Insights Index Page */
@@ -1190,7 +1229,7 @@ button {
 
 .news-ticker-scroll {
   display: flex;
-  animation: tickerScroll 120s linear infinite;
+  animation: tickerScroll 45s linear infinite;
   white-space: nowrap;
 }
 
@@ -1947,11 +1986,92 @@ button {
   color: var(--color-text-light);
 }
 
+/* ── Hamburger Menu ────────────────────────────────────── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background: var(--gradient-dark);
+  z-index: 999;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.mobile-menu a {
+  display: block;
+  padding: 0.85rem 1.5rem;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.mobile-menu a:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* ── Responsive: Tablet (max 1024px) ─────────────────────── */
+@media (max-width: 1024px) {
+  .nav-middle { gap: 1.5rem; }
+  .sectors-grid-photo { grid-template-columns: repeat(2, 1fr); }
+  .insights-grid { grid-template-columns: repeat(2, 1fr); }
+  .news-grid { grid-template-columns: repeat(2, 1fr); }
+  .case-studies-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Responsive: Phone (max 768px) ───────────────────────── */
 @media (max-width: 768px) {
-  .news-grid {
-    grid-template-columns: 1fr;
-  }
-  .news-filters {
-    justify-content: center;
-  }
+  .nav-middle { display: none; }
+  .nav-hamburger { display: flex; }
+  .mobile-menu { display: block; }
+  .nav { padding: 0 1rem; }
+  .nav-right { gap: 0.75rem; }
+  .news-ticker { top: 65px; height: 32px; }
+  .news-ticker ~ .hero { margin-top: 97px; }
+  .news-ticker-label { font-size: 0.6rem; padding: 0 0.5rem; }
+  .news-ticker-item { padding: 0 1rem; font-size: 0.7rem; }
+  .sectors-grid-photo { grid-template-columns: 1fr; }
+  .insights-grid { grid-template-columns: 1fr; }
+  .news-grid { grid-template-columns: 1fr; }
+  .news-filters { justify-content: center; flex-wrap: wrap; }
+  .insights-page-hero { padding: 2.5rem 1rem 1.5rem; }
+  .insights-page-hero .section-title { font-size: 1.5rem; }
+  .insights-tabs { flex-wrap: wrap; justify-content: center; }
+  .insights-articles-section { padding: 2rem 1rem; }
+  .insights-news-section { padding: 2rem 1rem; }
+  .insight-card-image { height: 140px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .feature-split-content { flex-direction: column; }
+}
+
+/* ── Responsive: Small Phone (max 480px) ─────────────────── */
+@media (max-width: 480px) {
+  .btn-cta { font-size: 0.8rem; padding: 0.5rem 1rem; }
+  .insights-tab { padding: 0.4rem 1rem; font-size: 0.8rem; }
+  .news-filter-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
+  .news-card { padding: 1rem; }
+  .insight-article-hero { height: 160px; }
 }
