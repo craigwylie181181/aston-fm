@@ -8,7 +8,7 @@ function NewsTicker() {
   const [items, setItems] = useState<{ title: string; link: string; source: string; date: string }[]>([]);
 
   useEffect(() => {
-    fetch('/api/news?days=14')
+    fetch('/api/news?days=60')
       .then(r => r.json())
       .then(data => setItems(data.items || []))
       .catch(() => {});
@@ -105,7 +105,7 @@ export default function Home() {
           <a href="#case-studies" className="nav-link">Case Studies</a>
           <a href="#about" className="nav-link">About Us</a>
           <a href="#contact" className="nav-link">Contact</a>
-          <Link href="/news" className="nav-link">News</Link>
+          <Link href="/insights" className="nav-link">News</Link>
         </div>
         <div className="nav-right">
           <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
@@ -300,6 +300,7 @@ export default function Home() {
           <div className="section-header">
             <h2 className="section-title">Latest Insights</h2>
             <p className="section-subtitle">Perspectives on FM consulting, ESG compliance, and operational performance across the UAE and international markets</p>
+            <Link href="/insights" className="btn-cta" style={{ textDecoration: 'none', display: 'inline-block', marginTop: '1rem', fontSize: '0.9rem' }}>View All Insights &amp; Industry News →</Link>
           </div>
           <div className="insights-grid-compact">
             <Link href="/insights/esg-scope-guide" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=300&fit=crop)' }}>
