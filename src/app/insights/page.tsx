@@ -36,7 +36,7 @@ const authoredArticles = [
   },
   {
     slug: 'uae-fm-market-outlook',
-    title: 'UAE Facilities Management Market Outlook 2026\u20132030',
+    title: 'UAE Facilities Management Market Outlook 2026–2030',
     date: '2026-02-19',
     category: 'UAE Market',
     imageUrl: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&h=300&fit=crop',

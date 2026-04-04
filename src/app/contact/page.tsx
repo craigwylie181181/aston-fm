@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-/* \u2014 Logo \u2014 */
+/* — Logo — */
 function AstonFMLogo({ size = 40 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +37,7 @@ function AstonFMLogo({ size = 40 }: { size?: number }) {
   );
 }
 
-/* \u2014 LinkedIn Icon \u2014 */
+/* — LinkedIn Icon — */
 function LinkedInIcon({ size = 20 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@ function LinkedInIcon({ size = 20 }: { size?: number }) {
   );
 }
 
-/* \u2014 Contact Page \u2014 */
+/* — Contact Page — */
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -150,7 +150,7 @@ export default function ContactPage() {
           {/* Header */}
           <div className="section-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h1 className="section-title">Get in Touch</h1>
-            <p className="section-subtitle">Let\u2019s discuss your FM needs and how we can help drive performance across your UAE operations and beyond</p>
+            <p className="section-subtitle">Let’s discuss your FM needs and how we can help drive performance across your UAE operations and beyond</p>
           </div>
 
           {/* Success Message */}
@@ -165,7 +165,7 @@ export default function ContactPage() {
               textAlign: 'center',
             }}>
               <h3 style={{ margin: '0 0 0.5rem 0' }}>Thank You</h3>
-              <p style={{ margin: '0' }}>Your enquiry has been sent successfully. We\u2019ll be in touch shortly.</p>
+              <p style={{ margin: '0' }}>Your enquiry has been sent successfully. We’ll be in touch shortly.</p>
             </div>
           )}
 
@@ -260,7 +260,7 @@ export default function ContactPage() {
 
               {/* Services Interested In */}
               <div className="form-group full-width">
-                <label>Services You\u2019re Interested In</label>
+                <label>Services You’re Interested In</label>
                 <div className="form-services-grid">
                   {serviceOptions.map(service => (
                     <div key={service} className="form-checkbox">

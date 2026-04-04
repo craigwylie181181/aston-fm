@@ -34,7 +34,7 @@ export default function LogoOptions() {
             <circle cx="95" cy="30" r="14" stroke="url(#grad1)" strokeWidth="4" fill="none" opacity="0.5" />
             <circle cx="95" cy="30" r="5" fill="url(#grad1)" opacity="0.5" />
           </svg>
-          <p style={{ color: '#666', fontSize: '14px', marginTop: '16px' }}>Current logo {"\u2014"} building skyline with gear accent</p>
+          <p style={{ color: '#666', fontSize: '14px', marginTop: '16px' }}>Current logo {"—"} building skyline with gear accent</p>
         </div>
 
         {/* Option 2: Monogram "A" with building silhouette */}

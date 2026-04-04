@@ -2065,6 +2065,14 @@ button {
   .insight-card-image { height: 140px; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .feature-split-content { flex-direction: column; }
+  .testimonials { padding: 3rem 1rem; }
+  .testimonials-slider { flex-wrap: wrap; justify-content: center; }
+  .testimonials-track { gap: 1rem; padding: 0.5rem 0; }
+  .testimonial-card { flex: 0 0 85%; min-width: unset; padding: 1.5rem; }
+  .testimonial-card .testimonial-quote { font-size: 0.95rem; line-height: 1.7; }
+  .testimonials-arrow-left { order: 1; margin: 1rem 0.5rem 0 0; }
+  .testimonials-arrow-right { order: 2; margin: 1rem 0 0 0.5rem; }
+  .testimonials-arrow { width: 42px; height: 42px; font-size: 1.3rem; }
 }
 
 /* ── Responsive: Small Phone (max 480px) ─────────────────── */
@@ -2074,4 +2082,6 @@ button {
   .news-filter-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
   .news-card { padding: 1rem; }
   .insight-article-hero { height: 160px; }
+  .testimonial-card .testimonial-quote { font-size: 0.9rem; line-height: 1.6; }
+  .testimonial-card { padding: 1.25rem; }
 }
