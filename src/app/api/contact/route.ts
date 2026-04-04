@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 interface ContactFormData {
-  name: string;
+  fullName: string;
   jobTitle?: string;
   companyName: string;
   email: string;
@@ -15,12 +15,12 @@ export async function POST(request: Request) {
     const body = await request.json() as ContactFormData;
 
     // Validate required fields
-    const { name, companyName, email } = body;
+    const { fullName, companyName, email } = body;
 
-    if (!name || !companyName || !email) {
+    if (!fullName || !companyName || !email) {
       return NextResponse.json(
         {
-          error: 'Missing required fields: name, companyName, and email are required.',
+          error: 'Missing required fields: fullName, companyName, and email are required.',
         },
         { status: 400 }
       );
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         from: 'Aston FM Website <onboarding@resend.dev>',
         to: 'info@astongroupuae.com',
-        subject: `New Enquiry from ${name} at ${companyName}`,
+        subject: `New Enquiry from ${fullName} at ${companyName}`,
         html: htmlBody,
         reply_to: email,
       }),
@@ -86,13 +86,13 @@ export async function POST(request: Request) {
     console.error('Contact form error:', error);
     return NextResponse.json(
       { error: 'An error occurred while processing your request.' },
-      { status: 500 }
-    );
+        { status: 500 }
+      );
   }
 }
 
 function generateEmailHTML(data: ContactFormData): string {
-  const { name, jobTitle, companyName, email, phone, services, message } = data;
+  const { fullName, jobTitle, companyName, email, phone, services, message } = data;
 
   const servicesHTML = services && services.length > 0
     ? `
@@ -237,7 +237,7 @@ function generateEmailHTML(data: ContactFormData): string {
         <table>
           <tr>
             <td>
-              <strong style="color: #0d1b2a;">Name:</strong> <span style="color: #4b5563;">${escapeHtml(name)}</span>
+              <strong style="color: #0d1b2a;">Name:</strong> <span style="color: #4b5563;">${escapeHtml(fullName)}</span>
             </td>
           </tr>
           ${jobTitleHTML}
