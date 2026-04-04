@@ -7,7 +7,7 @@
   --color-white: #ffffff;
   --color-light-gray: #f5f7fa;
   --color-dark-gray: #333333;
-  --color-text: #1a1a1a;
+  --color-text: #1a1a1a
   --color-text-light: #5a6577;
   --gradient-brand: linear-gradient(135deg, #00b67a 0%, #00a5b5 50%, #3b7dd8 100%);
   --gradient-brand-hover: linear-gradient(135deg, #00a06a 0%, #0095a5 50%, #2b6dc8 100%);
@@ -1122,7 +1122,15 @@ button {
     font-size: 1.8rem;
   }
 
-  .services-grid,
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .services-grid .service-card:last-child {
+    grid-column: 1 / -1;
+  }
+
   .sectors-grid,
   .insights-grid {
     grid-template-columns: 1fr;
@@ -1156,7 +1164,22 @@ button {
   }
 
   .service-card {
-    min-height: 280px;
+    min-height: 220px;
+  }
+
+  .service-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .service-card p {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    margin-bottom: 0.6rem;
+  }
+
+  .service-card-content {
+    padding: 1.25rem;
   }
 }
 
@@ -1183,6 +1206,42 @@ button {
 
   .cta-section h2 {
     font-size: 1.5rem;
+  }
+
+  .services {
+    padding: 3rem 1rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .services-grid .service-card:last-child {
+    grid-column: auto;
+  }
+
+  .service-card {
+    min-height: 180px;
+  }
+
+  .service-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .service-card p {
+    font-size: 0.75rem;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-card-content {
+    padding: 1rem;
+  }
+
+  .service-link {
+    font-size: 0.8rem;
   }
 }
 
