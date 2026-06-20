@@ -57,7 +57,7 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         from: 'Aston FM Website <onboarding@resend.dev>',
-        to: 'craig.wylie181181@gmail.com',
+        to: 'info@astongroupuae.com',
         subject: `New Enquiry from ${fullName} at ${companyName}`,
         html: htmlBody,
         reply_to: email,
