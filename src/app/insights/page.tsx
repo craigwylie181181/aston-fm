@@ -70,7 +70,7 @@ export default function InsightsPage() {
         setNewsItems(data.items || []);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch((err) => { console.error('News fetch failed:', err); setLoading(false); });
   }, []);
 
   // Map sources to service categories
@@ -291,18 +291,18 @@ export default function InsightsPage() {
               </ul>
               <h4 style={{ marginTop: '1.5rem' }}>Legal</h4>
               <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Cookie Policy</a></li>
+                <li><Link href="/privacy">Privacy Policy</Link></li>
+                <li><Link href="/terms">Terms of Service</Link></li>
+                <li><Link href="/cookies">Cookie Policy</Link></li>
               </ul>
             </div>
           </div>
           <div className="footer-bottom">
             <div>&copy; 2026 Aston Facilities Management. All rights reserved.</div>
             <div className="footer-bottom-links">
-              <a href="#">Privacy</a>
-              <a href="#">Terms</a>
-              <a href="#">Cookies</a>
+              <Link href="/privacy">Privacy</Link>
+              <Link href="/terms">Terms</Link>
+              <Link href="/cookies">Cookies</Link>
             </div>
           </div>
         </div>
