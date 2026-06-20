@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import AstonFMLogo from '@/components/AstonFMLogo';
+import LinkedInIcon from '@/components/LinkedInIcon';
 
 /* ── News Ticker ────────────────────────────────────────────── */
 function NewsTicker() {
@@ -11,7 +13,7 @@ function NewsTicker() {
     fetch('/api/news?days=60')
       .then(r => r.json())
       .then(data => setItems(data.items || []))
-      .catch(() => {});
+      .catch((err) => console.error('News fetch failed:', err));
   }, []);
 
   if (!items.length) return null;
@@ -30,49 +32,6 @@ function NewsTicker() {
         </div>
       </div>
     </div>
-  );
-}
-
-/* ── Logo ───────────────────────────────────────────────────── */
-function AstonFMLogo({ size = 40 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#00b67a" />
-          <stop offset="50%" stopColor="#00a5b5" />
-          <stop offset="100%" stopColor="#3b7dd8" />
-        </linearGradient>
-      </defs>
-      <rect x="20" y="40" width="30" height="60" rx="3" fill="white" />
-      <rect x="55" y="20" width="25" height="80" rx="3" fill="white" opacity="0.85" />
-      <rect x="85" y="50" width="20" height="50" rx="3" fill="white" opacity="0.7" />
-      <rect x="27" y="48" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="37" y="48" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="27" y="60" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="37" y="60" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="27" y="72" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="37" y="72" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="62" y="28" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="62" y="40" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="62" y="52" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="62" y="64" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="62" y="76" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="90" y="58" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="90" y="70" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <rect x="90" y="82" width="7" height="6" rx="1" fill="url(#brandGrad)" opacity="0.9" />
-      <circle cx="95" cy="30" r="14" stroke="url(#brandGrad)" strokeWidth="4" fill="none" opacity="0.5" />
-      <circle cx="95" cy="30" r="5" fill="url(#brandGrad)" opacity="0.5" />
-    </svg>
-  );
-}
-
-/* ── LinkedIn Icon ──────────────────────────────────────────── */
-function LinkedInIcon({ size = 20 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-    </svg>
   );
 }
 
@@ -243,42 +202,42 @@ export default function Home() {
             <p className="section-subtitle">Strategic FM advisory across the UAE and international markets where performance, compliance, and cost control matter most</p>
           </div>
           <div className="sectors-grid-photo">
-            <Link href="#sectors" className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=500&fit=crop)' }}>
+            <div className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=500&fit=crop)' }}>
               <div className="sector-card-photo-content">
                 <h3>Oil &amp; Gas</h3>
                 <p>FM advisory for upstream, downstream, and petrochemical facilities across the UAE and Gulf region. Compliance-driven maintenance oversight, asset management, and ESG reporting for energy sector portfolios.</p>
               </div>
-            </Link>
-            <Link href="#sectors" className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=500&fit=crop)' }}>
+            </div>
+            <div className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=500&fit=crop)' }}>
               <div className="sector-card-photo-content">
                 <h3>Logistics &amp; Transport</h3>
                 <p>Performance management and cost optimisation for warehouses, free zones, ports, and transport hubs. Supporting operations across Jebel Ali, KIZAD, and regional logistics networks.</p>
               </div>
-            </Link>
-            <Link href="#sectors" className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=500&fit=crop)' }}>
+            </div>
+            <div className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=500&fit=crop)' }}>
               <div className="sector-card-photo-content">
                 <h3>Healthcare</h3>
                 <p>Critical environment FM oversight for hospitals, clinics, and healthcare campuses. Compliance reporting, planned maintenance tracking, and infection-control-aware facility strategies.</p>
               </div>
-            </Link>
-            <Link href="#sectors" className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=500&fit=crop)' }}>
+            </div>
+            <div className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=500&fit=crop)' }}>
               <div className="sector-card-photo-content">
                 <h3>Education</h3>
                 <p>FM performance reporting and project oversight for universities, international schools, and training campuses across the Emirates and wider region.</p>
               </div>
-            </Link>
-            <Link href="#sectors" className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=500&fit=crop)' }}>
+            </div>
+            <div className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=500&fit=crop)' }}>
               <div className="sector-card-photo-content">
                 <h3>Government &amp; Public Sector</h3>
                 <p>FM transparency, value-for-money reporting, and sustainability accountability for federal entities, municipalities, and smart government initiatives across the UAE.</p>
               </div>
-            </Link>
-            <Link href="#sectors" className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop)' }}>
+            </div>
+            <div className="sector-card-photo" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.15) 0%, rgba(13,27,42,0.85) 65%, rgba(13,27,42,0.95) 100%), url(https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop)' }}>
               <div className="sector-card-photo-content">
                 <h3>Corporate &amp; Commercial</h3>
                 <p>Office towers, business parks, free zone facilities, and multi-site corporate portfolios in DIFC, ADGM, and across the UAE requiring consistent FM performance and cost control.</p>
               </div>
-            </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -524,18 +483,18 @@ export default function Home() {
               </ul>
               <h4 style={{ marginTop: '1.5rem' }}>Legal</h4>
               <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Cookie Policy</a></li>
+                <li><Link href="/privacy">Privacy Policy</Link></li>
+                <li><Link href="/terms">Terms of Service</Link></li>
+                <li><Link href="/cookies">Cookie Policy</Link></li>
               </ul>
             </div>
           </div>
           <div className="footer-bottom">
             <div>&copy; 2026 Aston Facilities Management. All rights reserved.</div>
             <div className="footer-bottom-links">
-              <a href="#">Privacy</a>
-              <a href="#">Terms</a>
-              <a href="#">Cookies</a>
+              <Link href="/privacy">Privacy</Link>
+              <Link href="/terms">Terms</Link>
+              <Link href="/cookies">Cookies</Link>
             </div>
           </div>
         </div>
