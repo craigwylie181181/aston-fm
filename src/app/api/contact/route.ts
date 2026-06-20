@@ -57,7 +57,7 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         from: 'Aston FM Website <onboarding@resend.dev>',
-        to: 'info@astongroupuae.com',
+        to: 'craig.wylie181181@gmail.com',
         subject: `New Enquiry from ${fullName} at ${companyName}`,
         html: htmlBody,
         reply_to: email,
@@ -86,8 +86,8 @@ export async function POST(request: Request) {
     console.error('Contact form error:', error);
     return NextResponse.json(
       { error: 'An error occurred while processing your request.' },
-        { status: 500 }
-      );
+      { status: 500 }
+    );
   }
 }
 
