@@ -38,20 +38,17 @@ export default function InsightsView({ articles: authoredArticles }: { articles:
 
   // Map sources to service categories
   const sourceToCategory: Record<string, string> = {
-    'FacilitiesNet': 'Facilities Management',
-    'FM World': 'Facilities Management',
     'FMLink': 'Facilities Management',
-    'Facilitate': 'Facilities Management',
-    'Arabian Business RE': 'Real Estate',
-    'Zawya Real Estate': 'Real Estate',
-    'Property Funds World': 'Real Estate',
+    'Facilities Dive': 'Facilities Management',
+    'FMJ': 'Facilities Management',
+    'The National Property': 'Real Estate & Construction',
+    'Construction Dive': 'Real Estate & Construction',
     'ESG Today': 'ESG & Sustainability',
-    'GreenBiz': 'ESG & Sustainability',
     'edie': 'ESG & Sustainability',
     'ESG News': 'ESG & Sustainability',
   };
   const getCategory = (source: string) => sourceToCategory[source] || 'Industry';
-  const categories = ['all', 'Facilities Management', 'Real Estate', 'ESG & Sustainability'];
+  const categories = ['all', 'Facilities Management', 'Real Estate & Construction', 'ESG & Sustainability'];
   const filteredNews = sourceFilter === 'all' ? newsItems : newsItems.filter(item => getCategory(item.source) === sourceFilter);
 
   const formatDate = (dateStr: string) => {

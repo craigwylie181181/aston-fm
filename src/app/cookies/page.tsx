@@ -39,7 +39,7 @@ export default function CookiesPage() {
             <p>We may update this cookie policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
 
             <h2 style={{ color: '#0d1b2a', fontSize: '1.3rem', marginTop: '2rem' }}>7. Contact</h2>
-            <p>For questions about our use of cookies, contact us at <a href="mailto:info@aston-fm.com" style={{ color: '#00b67a' }}>info@aston-fm.com</a>.</p>
+            <p>For questions about our use of cookies, contact us at <a href="mailto:info@astongroupuae.com" style={{ color: '#00b67a' }}>info@astongroupuae.com</a>.</p>
           </div>
         </div>
       </section>

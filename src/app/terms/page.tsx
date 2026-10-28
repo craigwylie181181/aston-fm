@@ -41,7 +41,7 @@ export default function TermsPage() {
             <p>These terms shall be governed by and construed in accordance with the laws of the United Arab Emirates. Any disputes shall be subject to the exclusive jurisdiction of the courts of Dubai.</p>
 
             <h2 style={{ color: '#0d1b2a', fontSize: '1.3rem', marginTop: '2rem' }}>8. Contact</h2>
-            <p>For questions about these terms, contact us at <a href="mailto:info@aston-fm.com" style={{ color: '#00b67a' }}>info@aston-fm.com</a>.</p>
+            <p>For questions about these terms, contact us at <a href="mailto:info@astongroupuae.com" style={{ color: '#00b67a' }}>info@astongroupuae.com</a>.</p>
           </div>
         </div>
       </section>

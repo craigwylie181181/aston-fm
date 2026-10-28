@@ -36,13 +36,13 @@ export default function PrivacyPage() {
             <p>We retain your personal data only for as long as necessary to fulfil the purposes for which it was collected, or as required by law. Contact form submissions are retained for 24 months unless you request earlier deletion.</p>
 
             <h2 style={{ color: '#0d1b2a', fontSize: '1.3rem', marginTop: '2rem' }}>6. Your Rights</h2>
-            <p>You have the right to access, correct, or delete your personal data. You may also withdraw consent for marketing communications at any time. To exercise these rights, contact us at <a href="mailto:info@aston-fm.com" style={{ color: '#00b67a' }}>info@aston-fm.com</a>.</p>
+            <p>You have the right to access, correct, or delete your personal data. You may also withdraw consent for marketing communications at any time. To exercise these rights, contact us at <a href="mailto:info@astongroupuae.com" style={{ color: '#00b67a' }}>info@astongroupuae.com</a>.</p>
 
             <h2 style={{ color: '#0d1b2a', fontSize: '1.3rem', marginTop: '2rem' }}>7. Security</h2>
             <p>We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction.</p>
 
             <h2 style={{ color: '#0d1b2a', fontSize: '1.3rem', marginTop: '2rem' }}>8. Contact</h2>
-            <p>For any privacy-related questions, contact us at <a href="mailto:info@aston-fm.com" style={{ color: '#00b67a' }}>info@aston-fm.com</a>.</p>
+            <p>For any privacy-related questions, contact us at <a href="mailto:info@astongroupuae.com" style={{ color: '#00b67a' }}>info@astongroupuae.com</a>.</p>
           </div>
         </div>
       </section>

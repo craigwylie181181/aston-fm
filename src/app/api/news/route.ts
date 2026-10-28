@@ -14,18 +14,15 @@ interface FeedConfig {
 
 // Use feeds that reliably serve RSS to server-side requests
 const RSS_FEEDS: FeedConfig[] = [
-  // FM Industry (~40%)
-  { url: 'https://www.facilitiesnet.com/rss/fnallheadlines.xml', source: 'FacilitiesNet' },
-  { url: 'https://www.fm-world.co.uk/feed/', source: 'FM World' },
+  // FM Industry
   { url: 'https://www.fmlink.com/feed/', source: 'FMLink' },
-  { url: 'https://www.facilitatemagazine.com/feed/', source: 'Facilitate' },
-  // Real Estate (~30%)
-  { url: 'https://www.arabianbusiness.com/industries/real-estate/feed', source: 'Arabian Business RE' },
-  { url: 'https://www.zawya.com/en/business/real-estate/rss', source: 'Zawya Real Estate' },
-  { url: 'https://www.propertyfundsworld.com/rss', source: 'Property Funds World' },
-  // ESG & Sustainability (~30%)
+  { url: 'https://www.facilitiesdive.com/feeds/news/', source: 'Facilities Dive' },
+  { url: 'https://www.fmj.co.uk/feed/', source: 'FMJ' },
+  // Real Estate & Construction
+  { url: 'https://www.thenationalnews.com/arc/outboundfeeds/rss/category/business/property/?outputType=xml', source: 'The National Property' },
+  { url: 'https://www.constructiondive.com/feeds/news/', source: 'Construction Dive' },
+  // ESG & Sustainability
   { url: 'https://www.esgtoday.com/feed/', source: 'ESG Today' },
-  { url: 'https://www.greenbiz.com/rss/all', source: 'GreenBiz' },
   { url: 'https://www.edie.net/rss/', source: 'edie' },
   { url: 'https://esgnews.com/feed/', source: 'ESG News' },
 ];
@@ -167,7 +164,7 @@ function decodeHTMLEntities(text: string): string {
 }
 
 // Sources that are already FM-specific; everything else must mention the built environment or our region
-const FM_SOURCES = new Set(['FacilitiesNet', 'FM World', 'FMLink', 'Facilitate']);
+const FM_SOURCES = new Set(['FMLink', 'Facilities Dive', 'FMJ']);
 
 const RELEVANT = /\b(facilities|facility manag\w*|FM|building\w*|propert\w*|real estate|office\w*|workplace|landlord\w*|tenant\w*|occupier\w*|construction|retrofit\w*|HVAC|cooling|chiller\w*|district cooling|energy efficien\w*|smart build\w*|green build\w*|LEED|BREEAM|Estidama|data cent(re|er)s?|maintenance|indoor air|net[- ]zero build\w*|UAE|Dubai|Abu Dhabi|GCC|Gulf|Middle East|Saudi|Qatar|Oman|Bahrain|Kuwait|Masdar|Scope [123]|GHG Protocol|ISSB|CSRD|SECR|disclosure|sustainability reporting)\b/i;
 
