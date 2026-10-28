@@ -57,7 +57,9 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         from: 'Aston FM Website <onboarding@resend.dev>',
-        to: 'info@astongroupuae.com',
+        // aston-fm.com has no mail server yet, so enquiries keep going to the working inbox
+        // until CONTACT_INBOX is set in Vercel
+        to: process.env.CONTACT_INBOX || 'info@astongroupuae.com',
         subject: `New Enquiry from ${fullName} at ${companyName}`,
         html: htmlBody,
         reply_to: email,

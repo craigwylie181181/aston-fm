@@ -1,4 +1,7 @@
 import { MetadataRoute } from 'next';
+import { getPublishedArticles } from '@/content/insights';
+
+export const revalidate = 86400;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.aston-fm.com';
@@ -26,14 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'board-report-decks',
   ];
 
-  const insights = [
-    'esg-scope-guide',
-    'ai-changing-fm',
-    'fm-cost-quick-wins',
-    'uae-fm-market-outlook',
-    'contract-mobilisation-best-practices',
-    'energy-management-gulf',
-  ];
 
   return [
     { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
@@ -55,9 +50,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     })),
-    ...insights.map((slug) => ({
-      url: `${baseUrl}/insights/${slug}`,
-      lastModified: new Date(),
+    ...getPublishedArticles().map((article) => ({
+      url: `${baseUrl}/insights/${article.slug}`,
+      lastModified: new Date(article.date),
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     })),

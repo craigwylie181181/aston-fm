@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const SITE_URL = 'https://www.aston-fm.com';
 export const SITE_NAME = 'Aston Facilities Management';
-export const CONTACT_EMAIL = 'info@astongroupuae.com';
+export const CONTACT_EMAIL = 'info@aston-fm.com';
 export const LINKEDIN_URL = 'https://www.linkedin.com/company/aston-facilities-management';
 
 // Single source of truth for service names, used by the nav, footer and contact form

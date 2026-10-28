@@ -4,6 +4,10 @@ import SiteFooter from '@/components/SiteFooter';
 import NewsTicker from '@/components/NewsTicker';
 import TestimonialsSlider from '@/components/TestimonialsSlider';
 import { pageMetadata } from '@/lib/site';
+import { articleImage, getPublishedArticles } from '@/content/insights';
+
+// Refresh daily so the latest insights appear on their publish date
+export const revalidate = 86400;
 
 export const metadata = pageMetadata({
   title: { absolute: 'Aston Facilities Management | Integrated FM Solutions' },
@@ -205,42 +209,14 @@ export default function Home() {
             <Link href="/insights" className="btn-cta" style={{ textDecoration: 'none', display: 'inline-block', marginTop: '1rem', fontSize: '0.9rem' }}>View All Insights &amp; Industry News →</Link>
           </div>
           <div className="insights-grid-compact">
-            <Link href="/insights/esg-scope-guide" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=300&fit=crop)' }}>
-              <div className="insight-card-compact-content">
-                <span className="insight-category">ESG</span>
-                <h3>Understanding ESG Scope 1, 2 &amp; 3 Emissions for Facility Managers</h3>
-              </div>
-            </Link>
-            <Link href="/insights/ai-changing-fm" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop)' }}>
-              <div className="insight-card-compact-content">
-                <span className="insight-category">AI &amp; FM</span>
-                <h3>How AI Is Transforming Facilities Management in 2026</h3>
-              </div>
-            </Link>
-            <Link href="/insights/fm-cost-quick-wins" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop)' }}>
-              <div className="insight-card-compact-content">
-                <span className="insight-category">Cost Reduction</span>
-                <h3>5 Quick Wins to Reduce FM Costs Without Compromising Quality</h3>
-              </div>
-            </Link>
-            <Link href="/insights/uae-fm-market-outlook" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&h=300&fit=crop)' }}>
-              <div className="insight-card-compact-content">
-                <span className="insight-category">UAE Market</span>
-                <h3>UAE Facilities Management Market Outlook 2026&ndash;2030</h3>
-              </div>
-            </Link>
-            <Link href="/insights/contract-mobilisation-best-practices" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=300&fit=crop)' }}>
-              <div className="insight-card-compact-content">
-                <span className="insight-category">Mobilisation</span>
-                <h3>Contract Mobilisation Best Practices: Lessons from 50+ Transitions</h3>
-              </div>
-            </Link>
-            <Link href="/insights/energy-management-gulf" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=300&fit=crop)' }}>
-              <div className="insight-card-compact-content">
-                <span className="insight-category">Energy</span>
-                <h3>Energy Management in the Gulf: Strategies for 30%+ Savings</h3>
-              </div>
-            </Link>
+            {getPublishedArticles().slice(0, 6).map((article) => (
+              <Link key={article.slug} href={`/insights/${article.slug}`} className="insight-card-compact" style={{ backgroundImage: `linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(${articleImage(article, 400, 300)})` }}>
+                <div className="insight-card-compact-content">
+                  <span className="insight-category">{article.category}</span>
+                  <h3>{article.title}</h3>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
