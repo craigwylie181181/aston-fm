@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
-import AstonFMLogo from '@/components/AstonFMLogo';
-import LinkedInIcon from '@/components/LinkedInIcon';
+import { notFound } from 'next/navigation';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
+import { pageMetadata } from '@/lib/site';
 
 const caseStudies: Record<string, {
   title: string;
@@ -126,6 +128,8 @@ const caseStudies: Record<string, {
   },
 };
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return Object.keys(caseStudies).map((slug) => ({
     slug,
@@ -135,171 +139,26 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const caseStudy = caseStudies[slug];
-  if (!caseStudy) {
-    return {
-      title: 'Case Study Not Found',
-      description: 'The case study you are looking for does not exist.',
-    };
-  }
+  if (!caseStudy) return {};
 
-  return {
-    title: `${caseStudy.title} | Aston FM Case Studies`,
-    description: `Learn how Aston FM delivered ${caseStudy.title}. Explore our approach and results.`,
-    openGraph: {
-      title: caseStudy.title,
-      description: `${caseStudy.title} case study`,
-      images: [{ url: caseStudy.image }],
-    },
-  };
+  // First sentence of the results makes a specific, outcome-led description
+  const firstResult = caseStudy.results.split(/(?<=\.)\s/)[0];
+  return pageMetadata({
+    title: `${caseStudy.title} – Case Study`,
+    description: `Aston FM case study: ${firstResult}`.slice(0, 160),
+    path: `/case-studies/${slug}`,
+  });
 }
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const caseStudy = caseStudies[slug];
 
-  if (!caseStudy) {
-    return (
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <header
-          style={{
-            borderBottom: '1px solid #e0e0e0',
-            padding: '1rem 2rem',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
-          <Link href="/">
-            <AstonFMLogo size={38} />
-          </Link>
-          <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-            <Link href="/" style={{ color: '#0d1b2a', textDecoration: 'none', fontSize: '0.95rem' }}>
-              Home
-            </Link>
-            <Link href="/case-studies" style={{ color: '#0d1b2a', textDecoration: 'none', fontSize: '0.95rem' }}>
-              Case Studies
-            </Link>
-            <a
-              href="https://www.linkedin.com/company/aston-facilities-management"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: 'flex', alignItems: 'center' }}
-            >
-              <LinkedInIcon size={24} />
-            </a>
-            <Link
-              href="/#contact"
-              style={{
-                padding: '0.5rem 1rem',
-                backgroundColor: '#00b67a',
-                color: 'white',
-                textDecoration: 'none',
-                borderRadius: '4px',
-                fontSize: '0.9rem',
-              }}
-            >
-              Contact Us
-            </Link>
-          </nav>
-        </header>
-
-        <main style={{ flex: 1, padding: '3rem 2rem', textAlign: 'center' }}>
-          <h1 style={{ color: '#0d1b2a', marginBottom: '1rem' }}>Case Study Not Found</h1>
-          <p style={{ color: '#666', marginBottom: '2rem' }}>The case study you are looking for does not exist.</p>
-          <Link
-            href="/case-studies"
-            style={{
-              color: '#00b67a',
-              textDecoration: 'none',
-              fontWeight: 'bold',
-            }}
-          >
-            Back to Case Studies
-          </Link>
-        </main>
-
-        <footer style={{ backgroundColor: '#f8f8f8', borderTop: '1px solid #e0e0e0', padding: '3rem 2rem', marginTop: 'auto' }}>
-          <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', textAlign: 'left', fontSize: '0.9rem', color: '#666' }}>
-            <div>
-              <h4 style={{ color: '#0d1b2a', marginBottom: '1rem' }}>Company</h4>
-              <ul style={{ listStyle: 'none', padding: 0 }}>
-                <li><Link href="/" style={{ color: '#666', textDecoration: 'none' }}>About</Link></li>
-                <li><Link href="/case-studies" style={{ color: '#666', textDecoration: 'none' }}>Case Studies</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 style={{ color: '#0d1b2a', marginBottom: '1rem' }}>Services</h4>
-              <ul style={{ listStyle: 'none', padding: 0 }}>
-                <li><a href="/" style={{ color: '#666', textDecoration: 'none' }}>Facilities Management</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 style={{ color: '#0d1b2a', marginBottom: '1rem' }}>Legal</h4>
-              <ul style={{ listStyle: 'none', padding: 0 }}>
-                <li><Link href="/privacy" style={{ color: '#666', textDecoration: 'none' }}>Privacy Policy</Link></li>
-                <li><Link href="/terms" style={{ color: '#666', textDecoration: 'none' }}>Terms of Service</Link></li>
-                <li><Link href="/cookies" style={{ color: '#666', textDecoration: 'none' }}>Cookie Policy</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 style={{ color: '#0d1b2a', marginBottom: '1rem' }}>Contact</h4>
-              <p style={{ margin: 0 }}><a href="mailto:info@astongroupuae.com" style={{ color: '#666', textDecoration: 'none' }}>info@astongroupuae.com</a></p>
-            </div>
-          </div>
-        </footer>
-      </div>
-    );
-  }
+  if (!caseStudy) notFound();
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Navigation Header */}
-      <header
-        style={{
-          borderBottom: '1px solid #e0e0e0',
-          padding: '1rem 2rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          position: 'sticky',
-          top: 0,
-          backgroundColor: 'white',
-          zIndex: 100,
-        }}
-      >
-        <Link href="/">
-          <AstonFMLogo size={38} />
-        </Link>
-        <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          <Link href="/" style={{ color: '#0d1b2a', textDecoration: 'none', fontSize: '0.95rem' }}>
-            Home
-          </Link>
-          <Link href="/case-studies" style={{ color: '#0d1b2a', textDecoration: 'none', fontSize: '0.95rem' }}>
-            Case Studies
-          </Link>
-          <a
-            href="https://www.linkedin.com/company/aston-facilities-management"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: 'flex', alignItems: 'center' }}
-          >
-            <LinkedInIcon size={24} />
-          </a>
-          <Link
-            href="/#contact"
-            style={{
-              padding: '0.5rem 1rem',
-              backgroundColor: '#00b67a',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '4px',
-              fontSize: '0.9rem',
-            }}
-          >
-            Contact Us
-          </Link>
-        </nav>
-      </header>
+      <SiteNav />
 
       <main style={{ flex: 1 }}>
         {/* Hero Banner */}
@@ -325,7 +184,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             }}
           >
             <Link
-              href="/case-studies"
+              href="/#case-studies"
               style={{
                 color: '#00b67a',
                 textDecoration: 'none',
@@ -413,10 +272,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           >
             <h3 style={{ color: '#0d1b2a', marginTop: 0 }}>Ready to transform your operations?</h3>
             <p style={{ color: '#666', marginBottom: '1.5rem' }}>
-              Let's discuss how Aston FM can deliver similar results for your organisation.
+              Let&apos;s discuss how Aston FM can deliver similar results for your organisation.
             </p>
             <Link
-              href="/#contact"
+              href="/contact"
               style={{
                 display: 'inline-block',
                 backgroundColor: '#00b67a',
@@ -434,36 +293,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         </article>
       </main>
 
-      {/* Footer */}
-      <footer style={{ backgroundColor: '#f8f8f8', borderTop: '1px solid #e0e0e0', padding: '3rem 2rem', marginTop: '2rem' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', textAlign: 'left', fontSize: '0.9rem', color: '#666' }}>
-          <div>
-            <h4 style={{ color: '#0d1b2a', marginBottom: '1rem' }}>Company</h4>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-              <li><Link href="/" style={{ color: '#666', textDecoration: 'none' }}>About</Link></li>
-              <li><Link href="/case-studies" style={{ color: '#666', textDecoration: 'none' }}>Case Studies</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 style={{ color: '#0d1b2a', marginBottom: '1rem' }}>Services</h4>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-              <li><a href="/" style={{ color: '#666', textDecoration: 'none' }}>Facilities Management</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 style={{ color: '#0d1b2a', marginBottom: '1rem' }}>Legal</h4>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-              <li><Link href="/privacy" style={{ color: '#666', textDecoration: 'none' }}>Privacy Policy</Link></li>
-              <li><Link href="/terms" style={{ color: '#666', textDecoration: 'none' }}>Terms of Service</Link></li>
-              <li><Link href="/cookies" style={{ color: '#666', textDecoration: 'none' }}>Cookie Policy</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 style={{ color: '#0d1b2a', marginBottom: '1rem' }}>Contact</h4>
-            <p style={{ margin: 0 }}><a href="mailto:info@astongroupuae.com" style={{ color: '#666', textDecoration: 'none' }}>info@astongroupuae.com</a></p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

@@ -1,21 +1,24 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
-import AstonFMLogo from '@/components/AstonFMLogo';
-import LinkedInIcon from '@/components/LinkedInIcon';
-import MobileNav from '@/components/MobileNav';
+import { notFound } from 'next/navigation';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
+import { SITE_NAME, SITE_URL, formatDate, pageMetadata } from '@/lib/site';
 
 type Slug = 'esg-scope-guide' | 'ai-changing-fm' | 'fm-cost-quick-wins' | 'uae-fm-market-outlook' | 'contract-mobilisation-best-practices' | 'energy-management-gulf';
 
 const insightsData: Record<Slug, {
   title: string;
-  date: string;
+  date: string; // ISO yyyy-mm-dd
+  description: string;
   readingTime: number;
   imageUrl: string;
   content: React.ReactNode;
 }> = {
   'esg-scope-guide': {
     title: 'Understanding ESG Scope 1, 2 & 3 Emissions for Facility Managers',
-    date: '12 March 2026',
+    date: '2026-03-12',
+    description: 'A practical guide for facility managers in the GCC to measuring and reporting Scope 1, 2 and 3 emissions across a building portfolio.',
     readingTime: 7,
     imageUrl: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&q=80',
     content: (
@@ -63,7 +66,8 @@ const insightsData: Record<Slug, {
   },
   'ai-changing-fm': {
     title: 'How AI Is Transforming Facilities Management in 2026',
-    date: '5 March 2026',
+    date: '2026-03-05',
+    description: 'How AI and IoT are reshaping building operations, predictive maintenance, energy optimisation and workforce planning in facilities management.',
     readingTime: 8,
     imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80',
     content: (
@@ -96,7 +100,8 @@ const insightsData: Record<Slug, {
   },
   'fm-cost-quick-wins': {
     title: '5 Quick Wins to Reduce FM Costs Without Compromising Quality',
-    date: '26 February 2026',
+    date: '2026-02-26',
+    description: 'Five practical FM cost-saving measures you can deploy within 30–60 days, without cutting service quality.',
     readingTime: 6,
     imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
     content: (
@@ -136,7 +141,8 @@ const insightsData: Record<Slug, {
   },
   'uae-fm-market-outlook': {
     title: 'UAE Facilities Management Market Outlook 2026–2030',
-    date: '19 February 2026',
+    date: '2026-02-19',
+    description: 'Growth drivers, sustainability mandates and technology trends shaping the UAE facilities management market from 2026 to 2030.',
     readingTime: 8,
     imageUrl: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80',
     content: (
@@ -180,7 +186,8 @@ const insightsData: Record<Slug, {
   },
   'contract-mobilisation-best-practices': {
     title: 'Contract Mobilisation Best Practices: Lessons from 50+ Transitions',
-    date: '12 February 2026',
+    date: '2026-02-12',
+    description: 'Lessons from 50+ FM contract transitions: how to plan, staff and de-risk a mobilisation so service starts strong on day one.',
     readingTime: 9,
     imageUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
     content: (
@@ -232,7 +239,8 @@ const insightsData: Record<Slug, {
   },
   'energy-management-gulf': {
     title: 'Energy Management in the Gulf: Strategies for 30%+ Savings',
-    date: '5 February 2026',
+    date: '2026-02-05',
+    description: 'Gulf-specific energy strategies, from cooling optimisation to demand response, that help facilities achieve 30%+ savings.',
     readingTime: 8,
     imageUrl: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80',
     content: (
@@ -302,134 +310,44 @@ export function generateStaticParams(): Array<{ slug: Slug }> {
   ];
 }
 
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: Slug }> }): Promise<Metadata> {
   const { slug } = await params;
   const article = insightsData[slug];
-  if (!article) {
-    return {
-      title: 'Article Not Found',
-      description: 'The requested article could not be found.',
-    };
-  }
+  if (!article) return {};
 
-  return {
-    title: `${article.title} | Aston FM Insights`,
-    description: `Read our latest article on ${article.title}. Expert insights on facilities management for the GCC region.`,
-    openGraph: {
-      title: article.title,
-      description: `Read our latest article on ${article.title}. Expert insights on facilities management for the GCC region.`,
-      type: 'article',
-      publishedTime: article.date,
-      authors: ['Aston FM'],
-    },
-  };
+  return pageMetadata({
+    title: article.title,
+    description: article.description,
+    path: `/insights/${slug}`,
+    type: 'article',
+    publishedTime: article.date,
+  });
 }
 
 export default async function InsightPage({ params }: { params: Promise<{ slug: Slug }> }) {
   const { slug } = await params;
   const article = insightsData[slug];
 
-  if (!article) {
-    return (
-      <div className="min-h-screen">
-        <nav className="nav">
-          <Link href="/" className="nav-logo" style={{ background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'none' }}>
-            <AstonFMLogo size={38} />
-            <div className="nav-brand" style={{ color: 'white' }}>
-              Aston <span className="nav-brand-accent">FM</span>
-            </div>
-          </Link>
-          <div className="nav-middle">
-            <Link href="/#services" className="nav-link">Services</Link>
-            <Link href="/#sectors" className="nav-link">Sectors</Link>
-            <Link href="/insights" className="nav-link">Insights</Link>
-            <Link href="/#case-studies" className="nav-link">Case Studies</Link>
-            <Link href="/#about" className="nav-link">About Us</Link>
-            <Link href="/#contact" className="nav-link">Contact</Link>
-          </div>
-          <div className="nav-right">
-            <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
-              <LinkedInIcon size={20} />
-            </a>
-            <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
-            <MobileNav />
-          </div>
-        </nav>
+  if (!article) notFound();
 
-        <div className="section-container" style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '4rem 2rem', marginTop: '70px' }}>
-          <h1 className="section-title">Article Not Found</h1>
-          <p style={{ color: '#e5e7eb', marginBottom: '2rem' }}>The article you're looking for could not be found.</p>
-          <Link href="/insights" className="btn-cta" style={{ textDecoration: 'none', display: 'inline-block' }}>Back to Insights</Link>
-        </div>
-
-        <footer className="footer" style={{ marginTop: '2rem' }}>
-          <div className="footer-container">
-            <div className="footer-grid">
-              <div className="footer-column">
-                <h3 className="footer-brand">Company</h3>
-                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <li><Link href="/about" style={{ color: '#d1d5db', textDecoration: 'none' }}>About Us</Link></li>
-                  <li><Link href="/careers" style={{ color: '#d1d5db', textDecoration: 'none' }}>Careers</Link></li>
-                </ul>
-              </div>
-              <div className="footer-column">
-                <h3 className="footer-brand">Services</h3>
-                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <li><a href="#" style={{ color: '#d1d5db', textDecoration: 'none' }}>Hard FM</a></li>
-                  <li><a href="#" style={{ color: '#d1d5db', textDecoration: 'none' }}>Soft FM</a></li>
-                </ul>
-              </div>
-              <div className="footer-column">
-                <h3 className="footer-brand">Connect</h3>
-                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <li><a href="https://linkedin.com" style={{ color: '#d1d5db', textDecoration: 'none' }}>LinkedIn</a></li>
-                  <li><a href="mailto:info@astonfm.ae" style={{ color: '#d1d5db', textDecoration: 'none' }}>Email</a></li>
-                </ul>
-              </div>
-              <div className="footer-column">
-                <h3 className="footer-brand">Legal</h3>
-                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <li><a href="/privacy" style={{ color: '#d1d5db', textDecoration: 'none' }}>Privacy Policy</a></li>
-                  <li><a href="/terms" style={{ color: '#d1d5db', textDecoration: 'none' }}>Terms of Service</a></li>
-                </ul>
-              </div>
-            </div>
-            <div className="footer-bottom">
-              <div className="footer-bottom-links">
-                <p style={{ margin: 0 }}>&copy; 2026 Aston FM. All rights reserved.</p>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </div>
-    );
-  }
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.description,
+    image: article.imageUrl,
+    datePublished: article.date,
+    mainEntityOfPage: `${SITE_URL}/insights/${slug}`,
+    author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+  };
 
   return (
     <div className="min-h-screen">
-      <nav className="nav">
-        <Link href="/" className="nav-logo" style={{ background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'none' }}>
-          <AstonFMLogo size={38} />
-          <div className="nav-brand" style={{ color: 'white' }}>
-            Aston <span className="nav-brand-accent">FM</span>
-          </div>
-        </Link>
-        <div className="nav-middle">
-          <Link href="/#services" className="nav-link">Services</Link>
-          <Link href="/#sectors" className="nav-link">Sectors</Link>
-          <Link href="/insights" className="nav-link">Insights</Link>
-          <Link href="/#case-studies" className="nav-link">Case Studies</Link>
-          <Link href="/#about" className="nav-link">About Us</Link>
-          <Link href="/#contact" className="nav-link">Contact</Link>
-        </div>
-        <div className="nav-right">
-          <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
-            <LinkedInIcon size={20} />
-          </a>
-          <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
-          <MobileNav />
-        </div>
-      </nav>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <SiteNav />
 
       {/* Main Content */}
       <main style={{ paddingTop: '70px' }}>
@@ -458,7 +376,7 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
             <header style={{ marginBottom: '2rem' }}>
               <h1 className="section-title" style={{ marginBottom: '1rem' }}>{article.title}</h1>
               <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.875rem', color: 'rgba(255,255,255,0.7)' }}>
-                <time dateTime={article.date}>{article.date}</time>
+                <time dateTime={article.date}>{formatDate(article.date)}</time>
                 <span>{article.readingTime} min read</span>
               </div>
             </header>
@@ -496,7 +414,7 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
                   <h3 style={{ fontWeight: 'bold', color: '#001a4d', marginBottom: '0.5rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                     {data.title}
                   </h3>
-                  <p style={{ fontSize: '0.875rem', color: '#9ca3af', marginBottom: '1rem', margin: 0 }}>{data.date}</p>
+                  <p style={{ fontSize: '0.875rem', color: '#9ca3af', marginBottom: '1rem', margin: 0 }}>{formatDate(data.date)}</p>
                   <span style={{ fontSize: '0.875rem', color: '#00b67a', fontWeight: 500 }}>Read Article &rarr;</span>
                 </Link>
               ))}
@@ -505,46 +423,7 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="footer" style={{ marginTop: '4rem' }}>
-        <div className="footer-container">
-          <div className="footer-grid">
-            <div className="footer-column">
-              <h3 className="footer-brand">Company</h3>
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <li><Link href="/about" style={{ color: '#d1d5db', textDecoration: 'none' }}>About Us</Link></li>
-                <li><Link href="/careers" style={{ color: '#d1d5db', textDecoration: 'none' }}>Careers</Link></li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h3 className="footer-brand">Services</h3>
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <li><a href="#" style={{ color: '#d1d5db', textDecoration: 'none' }}>Hard FM</a></li>
-                <li><a href="#" style={{ color: '#d1d5db', textDecoration: 'none' }}>Soft FM</a></li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h3 className="footer-brand">Connect</h3>
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <li><a href="https://linkedin.com" style={{ color: '#d1d5db', textDecoration: 'none' }}>LinkedIn</a></li>
-                <li><a href="mailto:info@astonfm.ae" style={{ color: '#d1d5db', textDecoration: 'none' }}>Email</a></li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h3 className="footer-brand">Legal</h3>
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <li><a href="/privacy" style={{ color: '#d1d5db', textDecoration: 'none' }}>Privacy Policy</a></li>
-                <li><a href="/terms" style={{ color: '#d1d5db', textDecoration: 'none' }}>Terms of Service</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <div className="footer-bottom-links">
-              <p style={{ margin: 0 }}>&copy; 2026 Aston FM. All rights reserved.</p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

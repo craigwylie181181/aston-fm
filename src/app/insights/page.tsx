@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import AstonFMLogo from '@/components/AstonFMLogo';
-import LinkedInIcon from '@/components/LinkedInIcon';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
 
 interface NewsItem {
   title: string;
@@ -99,46 +99,9 @@ export default function InsightsPage() {
     }
   };
 
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <div className="min-h-screen">
-      {/* Navigation */}
-      <nav className="nav">
-        <Link href="/" className="nav-logo" style={{ background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'none' }}>
-          <AstonFMLogo size={38} />
-          <div className="nav-brand" style={{ color: 'white' }}>
-            Aston <span className="nav-brand-accent">FM</span>
-          </div>
-        </Link>
-        <div className="nav-middle">
-          <Link href="/#services" className="nav-link">Services</Link>
-          <Link href="/#sectors" className="nav-link">Sectors</Link>
-          <Link href="/insights" className="nav-link">Insights</Link>
-          <Link href="/#case-studies" className="nav-link">Case Studies</Link>
-          <Link href="/#about" className="nav-link">About Us</Link>
-          <Link href="/#contact" className="nav-link">Contact</Link>
-        </div>
-        <div className="nav-right">
-          <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
-            <LinkedInIcon size={20} />
-          </a>
-          <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
-          <button className="nav-hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Menu">
-            <span /><span /><span />
-          </button>
-        </div>
-      </nav>
-      {mobileMenuOpen && (
-        <div className="mobile-menu">
-          <Link href="/#services" onClick={() => setMobileMenuOpen(false)}>Services</Link>
-          <Link href="/#sectors" onClick={() => setMobileMenuOpen(false)}>Sectors</Link>
-          <Link href="/insights" onClick={() => setMobileMenuOpen(false)}>Insights</Link>
-          <Link href="/#case-studies" onClick={() => setMobileMenuOpen(false)}>Case Studies</Link>
-          <Link href="/#about" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
-          <Link href="/#contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-        </div>
-      )}
+      <SiteNav />
 
       {/* Hero */}
       <div className="insights-page-hero">
@@ -198,7 +161,7 @@ export default function InsightsPage() {
                     <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--color-navy)', lineHeight: 1.4, marginBottom: '0.5rem' }}>
                       {article.title}
                     </h3>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--color-text-light)' }}>{formatDate(article.date)}</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--color-text-light)' }}><time dateTime={article.date}>{formatDate(article.date)}</time></p>
                   </div>
                 </Link>
               ))}
@@ -251,62 +214,7 @@ export default function InsightsPage() {
         </section>
       )}
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-grid">
-            <div className="footer-column footer-brand">
-              <h4>Aston FM</h4>
-              <p>Lean FM consulting powered by AI. Strategic oversight, ESG reporting, and performance management for organisations across the UAE and international markets.</p>
-              <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="footer-linkedin">
-                <LinkedInIcon size={24} /> Follow us on LinkedIn
-              </a>
-            </div>
-            <div className="footer-column">
-              <h4>Services</h4>
-              <ul>
-                <li><Link href="/services/esg-reporting">ESG Reporting</Link></li>
-                <li><Link href="/services/fm-performance-dashboard">FM Performance Dashboard</Link></li>
-                <li><Link href="/services/project-management">Project Management</Link></li>
-                <li><Link href="/services/cost-reduction">Cost-Reduction Review</Link></li>
-                <li><Link href="/services/tender-bid-support">Tender &amp; Bid Support</Link></li>
-                <li><Link href="/services/energy-savings">Energy-Savings Advisory</Link></li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h4>Company</h4>
-              <ul>
-                <li><Link href="/#about">About Us</Link></li>
-                <li><Link href="/#sectors">Industries</Link></li>
-                <li><Link href="/insights">Insights</Link></li>
-                <li><Link href="/#case-studies">Case Studies</Link></li>
-                <li><Link href="/#contact">Contact</Link></li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h4>Contact</h4>
-              <ul>
-                <li><a href="mailto:info@astongroupuae.com">info@astongroupuae.com</a></li>
-                <li>UAE &bull; UK &bull; Europe &bull; Australia</li>
-              </ul>
-              <h4 style={{ marginTop: '1.5rem' }}>Legal</h4>
-              <ul>
-                <li><Link href="/privacy">Privacy Policy</Link></li>
-                <li><Link href="/terms">Terms of Service</Link></li>
-                <li><Link href="/cookies">Cookie Policy</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <div>&copy; 2026 Aston Facilities Management. All rights reserved.</div>
-            <div className="footer-bottom-links">
-              <Link href="/privacy">Privacy</Link>
-              <Link href="/terms">Terms</Link>
-              <Link href="/cookies">Cookies</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

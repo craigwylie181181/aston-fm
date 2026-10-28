@@ -1,34 +1,17 @@
-import Link from 'next/link';
-import AstonFMLogo from '@/components/AstonFMLogo';
-import LinkedInIcon from '@/components/LinkedInIcon';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
+import { pageMetadata } from '@/lib/site';
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: 'Privacy Policy',
   description: 'Privacy policy for Aston Facilities Management — how we collect, use, and protect your personal data.',
-};
+  path: '/privacy',
+});
 
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen">
-      <nav className="nav">
-        <Link href="/" className="nav-logo" style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-          <AstonFMLogo size={38} />
-          <div className="nav-brand">Aston <span className="nav-brand-accent">FM</span></div>
-        </Link>
-        <div className="nav-middle">
-          <a href="/#services" className="nav-link">Services</a>
-          <a href="/#sectors" className="nav-link">Sectors</a>
-          <Link href="/insights" className="nav-link">Insights</Link>
-          <a href="/#case-studies" className="nav-link">Case Studies</a>
-          <Link href="/contact" className="nav-link">Contact</Link>
-        </div>
-        <div className="nav-right">
-          <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
-            <LinkedInIcon size={20} />
-          </a>
-          <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
-        </div>
-      </nav>
+      <SiteNav />
 
       <section className="legal-page">
         <div className="section-container" style={{ maxWidth: '800px', margin: '0 auto', padding: '6rem 2rem 4rem' }}>
@@ -64,18 +47,7 @@ export default function PrivacyPage() {
         </div>
       </section>
 
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-bottom">
-            <div>&copy; 2026 Aston Facilities Management. All rights reserved.</div>
-            <div className="footer-bottom-links">
-              <Link href="/privacy">Privacy</Link>
-              <Link href="/terms">Terms</Link>
-              <Link href="/cookies">Cookies</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

@@ -1,91 +1,21 @@
-'use client';
-
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import AstonFMLogo from '@/components/AstonFMLogo';
-import LinkedInIcon from '@/components/LinkedInIcon';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
+import NewsTicker from '@/components/NewsTicker';
+import TestimonialsSlider from '@/components/TestimonialsSlider';
+import { pageMetadata } from '@/lib/site';
 
-/* ── News Ticker ────────────────────────────────────────────── */
-function NewsTicker() {
-  const [items, setItems] = useState<{ title: string; link: string; source: string; date: string }[]>([]);
-
-  useEffect(() => {
-    fetch('/api/news?days=60')
-      .then(r => r.json())
-      .then(data => setItems(data.items || []))
-      .catch((err) => console.error('News fetch failed:', err));
-  }, []);
-
-  if (!items.length) return null;
-
-  return (
-    <div className="news-ticker">
-      <span className="news-ticker-label">Latest News</span>
-      <div className="news-ticker-track">
-        <div className="news-ticker-scroll">
-          {items.concat(items).map((item, i) => (
-            <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" className="news-ticker-item">
-              <span className="news-ticker-source">{item.source}</span>
-              {item.title}
-            </a>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
+export const metadata = pageMetadata({
+  title: { absolute: 'Aston Facilities Management | Integrated FM Solutions' },
+  description: 'Delivering innovative, technology-driven facilities management solutions that help organisations reduce costs, improve efficiency, and create better working environments across the UAE and international markets.',
+  path: '/',
+});
 
 /* ── Main Page ──────────────────────────────────────────────── */
 export default function Home() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
   return (
     <div className="min-h-screen">
-      {/* Navigation */}
-      <nav className={`nav ${isScrolled ? 'scrolled' : ''}`}>
-        <button onClick={scrollToTop} className="nav-logo" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-          <AstonFMLogo size={38} />
-          <div className="nav-brand" style={{ color: 'white' }}>
-            Aston <span className="nav-brand-accent">FM</span>
-          </div>
-        </button>
-        <div className="nav-middle">
-          <a href="#services" className="nav-link">Services</a>
-          <a href="#sectors" className="nav-link">Sectors</a>
-          <Link href="/insights" className="nav-link">Insights</Link>
-          <a href="#case-studies" className="nav-link">Case Studies</a>
-          <a href="#about" className="nav-link">About Us</a>
-          <a href="#contact" className="nav-link">Contact</a>
-        </div>
-        <div className="nav-right">
-          <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-linkedin" title="Follow us on LinkedIn">
-            <LinkedInIcon size={20} />
-          </a>
-          <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
-          <button className="nav-hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Menu">
-            <span /><span /><span />
-          </button>
-        </div>
-      </nav>
-      {mobileMenuOpen && (
-        <div className="mobile-menu">
-          <a href="#services" onClick={() => setMobileMenuOpen(false)}>Services</a>
-          <a href="#sectors" onClick={() => setMobileMenuOpen(false)}>Sectors</a>
-          <Link href="/insights" onClick={() => setMobileMenuOpen(false)}>Insights</Link>
-          <a href="#case-studies" onClick={() => setMobileMenuOpen(false)}>Case Studies</a>
-          <a href="#about" onClick={() => setMobileMenuOpen(false)}>About Us</a>
-          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a>
-        </div>
-      )}
+      <SiteNav />
 
       {/* News Ticker */}
       <NewsTicker />
@@ -96,7 +26,7 @@ export default function Home() {
         <h1>Smarter facilities management <span className="hero-highlight">for the UAE and beyond</span></h1>
         <p>Expert FM consulting, ESG reporting, and performance management for organisations across the UAE, Middle East, and international markets. With proven experience across the UK, Europe, and Australia, we bring global best practice to the region. AI-powered. Lean. Results-driven.</p>
         <div className="hero-buttons">
-          <button className="btn-primary" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>Explore Our Services</button>
+          <a href="#services" className="btn-primary">Explore Our Services</a>
           <Link href="/contact" className="btn-secondary" style={{ textDecoration: 'none' }}>Contact Us</Link>
         </div>
         <div className="hero-stats">
@@ -278,37 +208,37 @@ export default function Home() {
             <Link href="/insights/esg-scope-guide" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=300&fit=crop)' }}>
               <div className="insight-card-compact-content">
                 <span className="insight-category">ESG</span>
-                <h3>Getting Scope 1 &amp; 2 Right: A Practical Guide for FM Teams</h3>
+                <h3>Understanding ESG Scope 1, 2 &amp; 3 Emissions for Facility Managers</h3>
               </div>
             </Link>
             <Link href="/insights/ai-changing-fm" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop)' }}>
               <div className="insight-card-compact-content">
                 <span className="insight-category">AI &amp; FM</span>
-                <h3>How AI Is Changing FM Consulting</h3>
+                <h3>How AI Is Transforming Facilities Management in 2026</h3>
               </div>
             </Link>
             <Link href="/insights/fm-cost-quick-wins" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop)' }}>
               <div className="insight-card-compact-content">
                 <span className="insight-category">Cost Reduction</span>
-                <h3>5 Quick Wins to Cut FM Costs Without Cutting Quality</h3>
+                <h3>5 Quick Wins to Reduce FM Costs Without Compromising Quality</h3>
               </div>
             </Link>
             <Link href="/insights/uae-fm-market-outlook" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&h=300&fit=crop)' }}>
               <div className="insight-card-compact-content">
                 <span className="insight-category">UAE Market</span>
-                <h3>UAE FM Market Outlook: Trends Shaping 2026</h3>
+                <h3>UAE Facilities Management Market Outlook 2026&ndash;2030</h3>
               </div>
             </Link>
             <Link href="/insights/contract-mobilisation-best-practices" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=300&fit=crop)' }}>
               <div className="insight-card-compact-content">
                 <span className="insight-category">Mobilisation</span>
-                <h3>Contract Mobilisation: Avoiding the Common Pitfalls</h3>
+                <h3>Contract Mobilisation Best Practices: Lessons from 50+ Transitions</h3>
               </div>
             </Link>
             <Link href="/insights/energy-management-gulf" className="insight-card-compact" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=300&fit=crop)' }}>
               <div className="insight-card-compact-content">
                 <span className="insight-category">Energy</span>
-                <h3>Energy Management in the Gulf: Practical Steps for FM Teams</h3>
+                <h3>Energy Management in the Gulf: Strategies for 30%+ Savings</h3>
               </div>
             </Link>
           </div>
@@ -333,49 +263,49 @@ export default function Home() {
             <Link href="/case-studies/bakery-energy-savings" className="case-study-card" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop)' }}>
               <div className="case-study-card-content">
                 <span className="case-study-tag">Energy</span>
-                <h3>20% Energy Reduction for Caf&eacute;/Bakery Chain</h3>
-                <p>Now rolling out across 12 more stores in the Emirates.</p>
+                <h3>20% Energy Reduction for UAE Caf&eacute; &amp; Bakery Chain</h3>
+                <p>Programme now rolled out to eight more stores in the Emirates.</p>
               </div>
             </Link>
             <Link href="/case-studies/jafza-office-fitout" className="case-study-card" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop)' }}>
               <div className="case-study-card-content">
                 <span className="case-study-tag">Project Management</span>
-                <h3>Office &amp; Training Centre Installation in Jafza</h3>
+                <h3>Office &amp; Training Centre Fit-Out in JAFZA</h3>
                 <p>Project management for a multinational vehicle supplier.</p>
               </div>
             </Link>
             <Link href="/case-studies/mod-bid-support" className="case-study-card" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop)' }}>
               <div className="case-study-card-content">
                 <span className="case-study-tag">Bid Support</span>
-                <h3>50-Site MOD Contract Bid Writing</h3>
+                <h3>50-Site UK Defence Contract Bid</h3>
                 <p>Technical and commercial bid support across UK, Cyprus, and Falkland Islands.</p>
               </div>
             </Link>
             <Link href="/case-studies/energy-dashboard" className="case-study-card" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop)' }}>
               <div className="case-study-card-content">
                 <span className="case-study-tag">Dashboard</span>
-                <h3>Energy Dashboard Build for Multiple Clients</h3>
+                <h3>Multi-Client Energy Dashboard Platform</h3>
                 <p>Live energy monitoring and reporting across diverse portfolios.</p>
               </div>
             </Link>
             <Link href="/case-studies/abu-dhabi-energy-audit" className="case-study-card" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop)' }}>
               <div className="case-study-card-content">
                 <span className="case-study-tag">Energy Audit</span>
-                <h3>Energy Audit for Large Catering Company</h3>
+                <h3>Energy Audit for Abu Dhabi Catering Company</h3>
                 <p>Comprehensive energy assessment across Abu Dhabi operations.</p>
               </div>
             </Link>
             <Link href="/case-studies/labour-management-review" className="case-study-card" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop)' }}>
               <div className="case-study-card-content">
                 <span className="case-study-tag">Cost Savings</span>
-                <h3>Labour Management Review &amp; Cost Savings</h3>
+                <h3>Labour Optimisation for Major FM Provider</h3>
                 <p>Workforce optimisation for a large FM company.</p>
               </div>
             </Link>
             <Link href="/case-studies/board-report-decks" className="case-study-card" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(13,27,42,0.1) 0%, rgba(13,27,42,0.88) 60%, rgba(13,27,42,0.97) 100%), url(https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop)' }}>
               <div className="case-study-card-content">
                 <span className="case-study-tag">Reporting</span>
-                <h3>Management Board Report Decks</h3>
+                <h3>Executive Board Reporting Suite</h3>
                 <p>AI-powered executive reporting for senior leadership.</p>
               </div>
             </Link>
@@ -389,43 +319,33 @@ export default function Home() {
           <div className="section-header">
             <h2 className="section-title" style={{ color: 'white' }}>What Our Clients Say</h2>
           </div>
-          <div className="testimonials-slider" id="testimonials-slider">
-            <button className="testimonials-arrow testimonials-arrow-left" onClick={() => {
-              const slider = document.getElementById('testimonials-track');
-              if (slider) slider.scrollBy({ left: -400, behavior: 'smooth' });
-            }}>&lsaquo;</button>
-            <div className="testimonials-track" id="testimonials-track">
-              <div className="testimonial-card">
-                <div className="testimonial-quote">&ldquo;Aston FM gave us the strategic FM oversight we needed without the cost of building an in-house team. Their dashboards and ESG reporting transformed how our board sees facilities management.&rdquo;</div>
-                <div className="testimonial-author">Operations Director</div>
-                <div className="testimonial-role">Multi-site Corporate Portfolio, Dubai</div>
-              </div>
-              <div className="testimonial-card">
-                <div className="testimonial-quote">&ldquo;The mobilisation of our 13 European sites was seamless. Aston FM managed the complexity across seven countries with precision, and we were operational on day one at every location.&rdquo;</div>
-                <div className="testimonial-author">Head of Facilities</div>
-                <div className="testimonial-role">Global Pharmaceutical Company</div>
-              </div>
-              <div className="testimonial-card">
-                <div className="testimonial-quote">&ldquo;Their bid writing support was the difference between winning and losing. The technical and commercial responses were outstanding, and we secured a contract worth over &pound;200m.&rdquo;</div>
-                <div className="testimonial-author">Bid Director</div>
-                <div className="testimonial-role">International FM Provider</div>
-              </div>
-              <div className="testimonial-card">
-                <div className="testimonial-quote">&ldquo;We achieved 20% energy savings within the first six months. Aston FM identified opportunities our internal team had missed for years. We&apos;re now rolling this out across all our UAE sites.&rdquo;</div>
-                <div className="testimonial-author">General Manager</div>
-                <div className="testimonial-role">Regional Caf&eacute; &amp; Bakery Chain, UAE</div>
-              </div>
-              <div className="testimonial-card">
-                <div className="testimonial-quote">&ldquo;The back-office transformation freed up 40% of our management time. Aston FM understood our operational pressures and designed workflows that actually work in a live FM environment.&rdquo;</div>
-                <div className="testimonial-author">Regional FM Director</div>
-                <div className="testimonial-role">Large FM Company, Abu Dhabi</div>
-              </div>
+          <TestimonialsSlider>
+            <div className="testimonial-card">
+              <div className="testimonial-quote">&ldquo;Aston FM gave us the strategic FM oversight we needed without the cost of building an in-house team. Their dashboards and ESG reporting transformed how our board sees facilities management.&rdquo;</div>
+              <div className="testimonial-author">Operations Director</div>
+              <div className="testimonial-role">Multi-site Corporate Portfolio, Dubai</div>
             </div>
-            <button className="testimonials-arrow testimonials-arrow-right" onClick={() => {
-              const slider = document.getElementById('testimonials-track');
-              if (slider) slider.scrollBy({ left: 400, behavior: 'smooth' });
-            }}>&rsaquo;</button>
-          </div>
+            <div className="testimonial-card">
+              <div className="testimonial-quote">&ldquo;The mobilisation of our 13 European sites was seamless. Aston FM managed the complexity across seven countries with precision, and we were operational on day one at every location.&rdquo;</div>
+              <div className="testimonial-author">Head of Facilities</div>
+              <div className="testimonial-role">Global Pharmaceutical Company</div>
+            </div>
+            <div className="testimonial-card">
+              <div className="testimonial-quote">&ldquo;Their bid writing support was the difference between winning and losing. The technical and commercial responses were outstanding, and we secured a contract worth over &pound;200m.&rdquo;</div>
+              <div className="testimonial-author">Bid Director</div>
+              <div className="testimonial-role">International FM Provider</div>
+            </div>
+            <div className="testimonial-card">
+              <div className="testimonial-quote">&ldquo;We achieved 20% energy savings within the first six months. Aston FM identified opportunities our internal team had missed for years. We&apos;re now rolling this out across all our UAE sites.&rdquo;</div>
+              <div className="testimonial-author">General Manager</div>
+              <div className="testimonial-role">Regional Caf&eacute; &amp; Bakery Chain, UAE</div>
+            </div>
+            <div className="testimonial-card">
+              <div className="testimonial-quote">&ldquo;The back-office transformation freed up 40% of our management time. Aston FM understood our operational pressures and designed workflows that actually work in a live FM environment.&rdquo;</div>
+              <div className="testimonial-author">Regional FM Director</div>
+              <div className="testimonial-role">Large FM Company, Abu Dhabi</div>
+            </div>
+          </TestimonialsSlider>
         </div>
       </section>
 
@@ -435,70 +355,11 @@ export default function Home() {
         <p>Get in touch to explore how our lean FM consulting model can deliver the insights and savings your organisation needs across the UAE and beyond.</p>
         <div className="cta-buttons">
           <Link href="/contact" className="btn-primary" style={{ textDecoration: 'none' }}>Contact Us</Link>
-          <button className="btn-secondary" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>View Our Services</button>
+          <a href="#services" className="btn-secondary">View Our Services</a>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-grid">
-            <div className="footer-column footer-brand">
-              <h4>Aston FM</h4>
-              <p>Lean FM consulting powered by AI. Strategic oversight, ESG reporting, and performance management for organisations across the UAE and international markets.</p>
-              <a href="https://www.linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="footer-linkedin">
-                <LinkedInIcon size={24} /> Follow us on LinkedIn
-              </a>
-            </div>
-            <div className="footer-column">
-              <h4>Services</h4>
-              <ul>
-                <li><Link href="/services/esg-reporting">ESG Reporting</Link></li>
-                <li><Link href="/services/fm-performance-dashboard">FM Performance Dashboard</Link></li>
-                <li><Link href="/services/project-management">Project Management</Link></li>
-                <li><Link href="/services/cost-reduction">Cost-Reduction Review</Link></li>
-                <li><Link href="/services/tender-bid-support">Tender &amp; Bid Support</Link></li>
-                <li><Link href="/services/energy-savings">Energy-Savings Advisory</Link></li>
-                <li><Link href="/services/fm-outsourcing">FM Outsourcing Advisory</Link></li>
-                <li><Link href="/services/contract-mobilisation">Contract Mobilisation</Link></li>
-                <li><Link href="/services/back-office-automation">Back-Office Automation</Link></li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h4>Company</h4>
-              <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#sectors">Industries</a></li>
-                <li><a href="#insights">Insights</a></li>
-                <li><a href="#case-studies">Case Studies</a></li>
-                <li><Link href="/news">News</Link></li>
-                <li><Link href="/contact">Contact</Link></li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h4>Contact</h4>
-              <ul>
-                <li><a href="mailto:info@astongroupuae.com">info@astongroupuae.com</a></li>
-                <li>UAE &bull; UK &bull; Europe &bull; Australia</li>
-              </ul>
-              <h4 style={{ marginTop: '1.5rem' }}>Legal</h4>
-              <ul>
-                <li><Link href="/privacy">Privacy Policy</Link></li>
-                <li><Link href="/terms">Terms of Service</Link></li>
-                <li><Link href="/cookies">Cookie Policy</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <div>&copy; 2026 Aston Facilities Management. All rights reserved.</div>
-            <div className="footer-bottom-links">
-              <Link href="/privacy">Privacy</Link>
-              <Link href="/terms">Terms</Link>
-              <Link href="/cookies">Cookies</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

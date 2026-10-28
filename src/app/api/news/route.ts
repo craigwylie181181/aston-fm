@@ -166,6 +166,45 @@ function decodeHTMLEntities(text: string): string {
     .replace(/&[a-zA-Z]+;/g, (match) => entities[match] || match);
 }
 
+// Sources that are already FM-specific; everything else must mention the built environment or our region
+const FM_SOURCES = new Set(['FacilitiesNet', 'FM World', 'FMLink', 'Facilitate']);
+
+const RELEVANT = /\b(facilities|facility manag\w*|FM|building\w*|propert\w*|real estate|office\w*|workplace|landlord\w*|tenant\w*|occupier\w*|construction|retrofit\w*|HVAC|cooling|chiller\w*|district cooling|energy efficien\w*|smart build\w*|green build\w*|LEED|BREEAM|Estidama|data cent(re|er)s?|maintenance|indoor air|net[- ]zero build\w*|UAE|Dubai|Abu Dhabi|GCC|Gulf|Middle East|Saudi|Qatar|Oman|Bahrain|Kuwait|Masdar|Scope [123]|GHG Protocol|ISSB|CSRD|SECR|disclosure|sustainability reporting)\b/i;
+
+// Event promos, competitions, job boards and product plugs that aren't news
+const PROMOTIONAL = /^(NEXT WEEK|THIS WEEK|TOMORROW|TODAY|LAST CHANCE|ONE WEEK TO GO|TWO WEEKS TO GO|\w+ WEEKS TO GO)\b|webinar|win a free|VIP pass|take our .*survey|podcast|job board|jobs on|\bawards?\b|announces winners|sponsored|\bsale\b/i;
+
+const STOPWORDS = new Set(['the', 'and', 'for', 'with', 'from', 'into', 'over', 'its', 'are', 'has', 'how', 'new', 'says', 'after', 'as', 'to', 'of', 'in', 'on', 'a', 'an', 'by', 'at']);
+
+function keywords(title: string): Set<string> {
+  return new Set(
+    title
+      .toLowerCase()
+      .replace(/[‘’']s\b/g, '')
+      .split(/[^a-z0-9.€$£]+/)
+      .filter((w) => w.length > 2 && !STOPWORDS.has(w))
+  );
+}
+
+// Two outlets often cover the same story with different headlines; treat high keyword overlap as a duplicate
+function isDuplicate(a: Set<string>, b: Set<string>): boolean {
+  let shared = 0;
+  for (const w of a) if (b.has(w)) shared++;
+  return shared >= 3 && shared / Math.min(a.size, b.size) >= 0.5;
+}
+
+function curate(items: NewsItem[]): NewsItem[] {
+  const kept: { item: NewsItem; words: Set<string> }[] = [];
+  for (const item of items) {
+    if (PROMOTIONAL.test(item.title)) continue;
+    if (!FM_SOURCES.has(item.source) && !RELEVANT.test(item.title)) continue;
+    const words = keywords(item.title);
+    if (kept.some((k) => isDuplicate(words, k.words))) continue;
+    kept.push({ item, words });
+  }
+  return kept.map((k) => k.item);
+}
+
 function isWithinLastDays(dateStr: string, days: number): boolean {
   try {
     const itemDate = new Date(dateStr);
@@ -184,6 +223,7 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const days = parseInt(searchParams.get('days') || '14', 10);
+    const limit = Math.min(parseInt(searchParams.get('limit') || '200', 10) || 200, 200);
 
     // Fetch all feeds in parallel with timeout
     const fetchPromises = RSS_FEEDS.map((feed) =>
@@ -193,11 +233,12 @@ export async function GET(request: Request) {
             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
           Accept: 'application/rss+xml, application/xml, text/xml, */*',
         },
-        signal: AbortSignal.timeout(8000),
+        signal: AbortSignal.timeout(5000),
+        // Cache each feed for an hour so visitors don't wait on 11 slow upstream requests
+        next: { revalidate: 3600 },
       })
         .then((res) => {
           if (!res.ok) {
-            errors.push(`${feed.source}: HTTP ${res.status}`);
             throw new Error(`HTTP ${res.status}`);
           }
           return res.text();
@@ -225,7 +266,7 @@ export async function GET(request: Request) {
     }
 
     // Filter to last N days and sort by date descending
-    const filteredItems = allItems
+    const filteredItems = curate(allItems
       .filter((item) => isWithinLastDays(item.date, days))
       .sort((a, b) => {
         const dateA = new Date(a.date).getTime();
@@ -234,8 +275,8 @@ export async function GET(request: Request) {
         if (isNaN(dateA)) return 1;
         if (isNaN(dateB)) return -1;
         return dateB - dateA;
-      })
-      .slice(0, 200);
+      }))
+      .slice(0, limit);
 
     return NextResponse.json(
       {
@@ -251,6 +292,7 @@ export async function GET(request: Request) {
       {
         headers: {
           'Content-Type': 'application/json',
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type',
