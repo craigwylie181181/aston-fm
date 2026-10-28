@@ -27,6 +27,12 @@ html, body {
   width: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+  /* keep in-page anchors clear of the fixed nav + news ticker */
+  scroll-padding-top: 110px;
+}
+
 body {
   font-family: var(--font-sans);
   color: var(--color-text);
@@ -864,7 +870,8 @@ button {
   margin-bottom: 2rem;
 }
 
-.footer-column h4 {
+.footer-column h4,
+.footer-column .footer-heading {
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -1703,7 +1710,8 @@ button {
   grid-column: 1 / -1;
 }
 
-.form-group label {
+.form-group label,
+.form-group .form-group-label {
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-navy);
@@ -2073,7 +2081,7 @@ button {
   left: 0;
   right: 0;
   background: var(--gradient-dark);
-  z-index: 999;
+  z-index: 1001;
   padding: 1rem 0;
   border-top: 1px solid rgba(255,255,255,0.1);
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);

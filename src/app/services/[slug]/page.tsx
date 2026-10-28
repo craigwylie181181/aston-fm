@@ -1,4 +1,9 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
+import { pageMetadata } from '@/lib/site';
 
 const services: Record<string, {
   title: string;
@@ -282,70 +287,32 @@ const services: Record<string, {
   },
 };
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return Object.keys(services).map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const service = services[slug];
+  if (!service) return {};
+  return pageMetadata({
+    title: service.title,
+    description: service.tagline,
+    path: `/services/${slug}`,
+  });
+}
+
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const service = services[slug];
 
-  if (!service) {
-    return (
-      <div style={{ padding: '8rem 2rem', textAlign: 'center' }}>
-        <h1>Service not found</h1>
-        <p style={{ marginTop: '1rem' }}>
-          <Link href="/#services">Back to services</Link>
-        </p>
-      </div>
-    );
-  }
+  if (!service) notFound();
 
   return (
     <div>
-      {/* Navigation */}
-      <nav className="nav">
-        <div className="nav-left">
-          <Link href="/" className="nav-logo" style={{ textDecoration: 'none' }}>
-            <svg width={32} height={32} viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#00b67a" />
-                  <stop offset="50%" stopColor="#00a5b5" />
-                  <stop offset="100%" stopColor="#3b7dd8" />
-                </linearGradient>
-              </defs>
-              <rect x="20" y="40" width="30" height="60" rx="3" fill="url(#brandGrad)" />
-              <rect x="55" y="20" width="25" height="80" rx="3" fill="url(#brandGrad)" opacity="0.85" />
-              <rect x="85" y="50" width="20" height="50" rx="3" fill="url(#brandGrad)" opacity="0.7" />
-              <rect x="27" y="48" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-              <rect x="37" y="48" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-              <rect x="27" y="60" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-              <rect x="37" y="60" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-              <rect x="62" y="28" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-              <rect x="62" y="40" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-              <rect x="62" y="52" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-              <rect x="90" y="58" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-              <rect x="90" y="70" width="7" height="6" rx="1" fill="white" opacity="0.9" />
-              <circle cx="95" cy="30" r="14" stroke="url(#brandGrad)" strokeWidth="4" fill="none" opacity="0.5" />
-              <circle cx="95" cy="30" r="5" fill="url(#brandGrad)" opacity="0.5" />
-            </svg>
-          </Link>
-          <Link href="/" className="nav-company-name" style={{ textDecoration: 'none' }}>
-            ASTON FM
-          </Link>
-        </div>
-        <div className="nav-middle">
-          <Link href="/#services" className="nav-link">Services</Link>
-          <Link href="/#sectors" className="nav-link">Sectors</Link>
-          <Link href="/#insights" className="nav-link">Insights</Link>
-          <Link href="/#case-studies" className="nav-link">Case Studies</Link>
-        </div>
-        <div className="nav-right">
-          <a href="https://linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="nav-social-link">
-            <svg width={20} height={20} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="currentColor" />
-            </svg>
-          </a>
-          <Link href="/contact" className="btn-cta" style={{ textDecoration: 'none' }}>Contact Us</Link>
-        </div>
-      </nav>
+      <SiteNav />
 
       {/* Hero Banner */}
       <section className="service-hero" style={{ backgroundImage: `linear-gradient(rgba(13,27,42,0.7), rgba(13,27,42,0.85)), url(${service.image})` }}>
@@ -417,63 +384,12 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         <h2>{service.cta}</h2>
         <p>Get in touch to discuss how this service can work for your organisation.</p>
         <div className="cta-buttons">
-          <Link href="/#contact" className="btn-primary" style={{ textDecoration: 'none' }}>Book a Discovery Call</Link>
+          <Link href="/contact" className="btn-primary" style={{ textDecoration: 'none' }}>Book a Discovery Call</Link>
           <Link href="/#services" className="btn-secondary" style={{ textDecoration: 'none' }}>View All Services</Link>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-grid">
-            <div className="footer-column">
-              <h4>Company</h4>
-              <ul>
-                <li><a href="/">About</a></li>
-                <li><Link href="/#services">Services</Link></li>
-                <li><Link href="/#sectors">Sectors</Link></li>
-                <li><Link href="/#case-studies">Case Studies</Link></li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h4>Services</h4>
-              <ul>
-                <li><Link href="/services/esg-reporting">ESG Reporting</Link></li>
-                <li><Link href="/services/fm-performance-dashboard">FM Performance Dashboard</Link></li>
-                <li><Link href="/services/project-management">Project Management</Link></li>
-                <li><Link href="/services/cost-reduction">Cost-Reduction Review</Link></li>
-                <li><Link href="/services/tender-bid-support">Tender &amp; Bid Support</Link></li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h4>Connect</h4>
-              <ul className="footer-connect">
-                <li><a href="mailto:info@astongroupuae.com">info@astongroupuae.com</a></li>
-                <li>
-                  <a href="https://linkedin.com/company/aston-facilities-management" target="_blank" rel="noopener noreferrer" className="footer-social-link">
-                    <svg width={16} height={16} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill="currentColor" />
-                    </svg>
-                    LinkedIn
-                  </a>
-                </li>
-                <li>Dubai, UAE</li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h4>Legal</h4>
-              <ul>
-                <li><a href="#">Privacy</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Cookies</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <div>&copy; 2026 Aston Facilities Management</div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
